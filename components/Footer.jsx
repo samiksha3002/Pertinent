@@ -1,96 +1,126 @@
-// src/components/Footer.jsx
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import {
   FaFacebookF,
   FaInstagram,
   FaLinkedinIn,
-  FaPhone,
+  FaPhoneAlt,
   FaEnvelope,
+  FaWhatsapp,
 } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-gray-300 py-10">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
-        {/* Brand */}
+    <motion.footer
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+      className="bg-black text-white py-12 px-6 font-sans"
+    >
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 border-b border-gray-800 pb-10">
+        {/* Brand & Description */}
         <div>
-          <div className="flex items-center space-x-2 mb-4">
+          <div className="flex items-center space-x-3 mb-4">
             <img
               src="/PCS Logo white.png"
               alt="Pertinent Logo"
-              className="h-10 w-auto"
+              className="h-12 w-auto"
             />
-            {/* <span className="text-white text-xl font-bold">Pertinent</span> */}
           </div>
-          <p className="text-sm text-gray-400">
-            Building strong foundations with trust, innovation, and precision.
-            We are a civil engineer-led construction company.
+          <p className="text-sm text-gray-400 leading-relaxed">
+            We are a civil engineer-led construction firm dedicated to quality,
+            innovation, and trust. Turning visions into strong realities.
           </p>
         </div>
 
         {/* Quick Links */}
         <div>
-          <h3 className="text-white text-lg font-semibold mb-4">Quick Links</h3>
-          <ul className="space-y-2 text-sm">
+          <h3 className="text-white text-lg font-semibold mb-4 tracking-wide">
+            Quick Links
+          </h3>
+          <ul className="space-y-3 text-sm text-gray-300">
             <li>
-              <a href="/" className="hover:text-red-600">
+              <a href="/" className="hover:text-red-600 transition">
                 Home
               </a>
             </li>
             <li>
-              <a href="#about" className="hover:text-red-600">
+              <a href="/about" className="hover:text-red-600 transition">
                 About
               </a>
             </li>
             <li>
-              <a href="#services" className="hover:text-red-600">
+              <a href="/service" className="hover:text-red-600 transition">
                 Services
               </a>
             </li>
             <li>
-              <a href="#projects" className="hover:text-red-600">
-                Projects
+              <a href="/gallery" className="hover:text-red-600 transition">
+                Gallery
               </a>
             </li>
             <li>
-              <a href="#contact" className="hover:text-red-600">
+              <a href="/contact" className="hover:text-red-600 transition">
                 Contact
               </a>
             </li>
           </ul>
         </div>
 
-        {/* Contact Info & Socials */}
+        {/* Contact & Social */}
         <div>
-          <h3 className="text-white text-lg font-semibold mb-4">Contact Us</h3>
-          <p className="flex items-center space-x-2 text-sm mb-2">
-            <FaPhone className="text-red-600" /> <span>+91 9876543210</span>
-          </p>
-          <p className="flex items-center space-x-2 text-sm mb-4">
-            <FaEnvelope className="text-red-600" />{" "}
-            <span>info@pertinent.com</span>
-          </p>
-          <div className="flex space-x-4 text-white">
-            <a href="#" className="hover:text-red-600">
-              <FaFacebookF />
+          <h3 className="text-white text-lg font-semibold mb-4 tracking-wide">
+            Get in Touch
+          </h3>
+          <div className="space-y-3 text-sm text-gray-300">
+            <p className="flex items-center gap-2">
+              <FaPhoneAlt className="text-red-600" /> +91 9876543210
+            </p>
+            <p className="flex items-center gap-2">
+              <FaEnvelope className="text-red-600" /> info@pertinent.com
+            </p>
+            <a
+              href="https://wa.me/919876543210"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 hover:text-green-500 transition"
+            >
+              <FaWhatsapp className="text-green-500" /> Chat on WhatsApp
             </a>
-            <a href="#" className="hover:text-red-600">
-              <FaInstagram />
+          </div>
+
+          <div className="mt-5 flex space-x-4 text-white">
+            <a
+              href="#"
+              className="p-2 bg-gray-800 rounded-full hover:bg-red-600 transition"
+            >
+              <FaFacebookF size={14} />
             </a>
-            <a href="#" className="hover:text-red-600">
-              <FaLinkedinIn />
+            <a
+              href="#"
+              className="p-2 bg-gray-800 rounded-full hover:bg-red-600 transition"
+            >
+              <FaInstagram size={14} />
+            </a>
+            <a
+              href="#"
+              className="p-2 bg-gray-800 rounded-full hover:bg-red-600 transition"
+            >
+              <FaLinkedinIn size={14} />
             </a>
           </div>
         </div>
       </div>
 
-      <div className="text-center text-sm text-gray-500 mt-10 border-t border-gray-800 pt-6">
+      {/* Copyright */}
+      <div className="text-center text-sm text-gray-500 mt-8">
         © {new Date().getFullYear()} Pertinent Construction. All rights
         reserved.
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 

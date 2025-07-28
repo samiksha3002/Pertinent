@@ -1,63 +1,41 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Link as ScrollLink } from "react-scroll";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FiMenu, FiX } from "react-icons/fi";
 import clsx from "clsx";
 
+// Navigation links configuration
 const navLinks = [
-  { name: "Home", to: "home" },
-  { name: "About", to: "about" },
-  { name: "Services", to: "services" },
-  { name: "Gallery", to: "gallery" },
-  { name: "Contact", to: "contact" },
+  { name: "Home", to: "/", isPage: true },
+  { name: "About", to: "/about", isPage: true },
+  { name: "Services", to: "/service", isPage: true },
+  { name: "Gallery", to: "/gallery", isPage: true },
+  { name: "Contact", to: "/contact", isPage: true },
 ];
 
 const Header = () => {
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  // Detect scroll direction to hide/show header
+  // Hide/show header on scroll
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setShowHeader(false); // scrolling down
+        setShowHeader(false);
       } else {
-        setShowHeader(true); // scrolling up
+        setShowHeader(true);
       }
-
       setLastScrollY(currentScrollY);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
-
-  // Scrollspy to highlight active section
-  useEffect(() => {
-    const sections = navLinks.map((link) => document.getElementById(link.to));
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { threshold: 0.6 }
-    );
-
-    sections.forEach((section) => {
-      if (section) observer.observe(section);
-    });
-
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <header
@@ -68,34 +46,30 @@ const Header = () => {
     >
       <div className="bg-transparent backdrop-blur-md px-6 py-4 max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
-        <a href="/" className="flex items-center space-x-2">
+        <Link href="/" className="flex items-center space-x-2">
           <img
             src="/PCS Logo white.png"
             alt="Pertinent Logo"
             className="h-14 w-auto transition duration-300 hover:scale-105"
           />
-        </a>
+        </Link>
 
-        {/* Desktop Nav */}
+        {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-10">
           {navLinks.map((link) => (
-            <ScrollLink
+            <Link
               key={link.name}
-              to={link.to}
-              smooth={true}
-              duration={500}
-              offset={-80}
-              spy={true}
+              href={link.to}
               className={clsx(
-                "cursor-pointer text-lg font-medium transition relative group",
-                activeSection === link.to
+                "text-lg font-medium transition relative group",
+                pathname === link.to
                   ? "text-red-500"
                   : "text-white hover:text-red-500"
               )}
             >
               {link.name}
               <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-red-600 transition-all duration-300 group-hover:w-full"></span>
-            </ScrollLink>
+            </Link>
           ))}
         </nav>
 
@@ -111,26 +85,23 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Nav */}
+      {/* Mobile Navigation */}
       {menuOpen && (
         <div className="md:hidden bg-black px-6 pt-2 pb-6 flex flex-col gap-4 transition-all duration-300">
           {navLinks.map((link) => (
-            <ScrollLink
+            <Link
               key={link.name}
-              to={link.to}
-              smooth={true}
-              duration={500}
-              offset={-80}
+              href={link.to}
               onClick={() => setMenuOpen(false)}
               className={clsx(
-                "cursor-pointer text-lg",
-                activeSection === link.to
+                "text-lg",
+                pathname === link.to
                   ? "text-red-500"
                   : "text-white hover:text-red-500"
               )}
             >
               {link.name}
-            </ScrollLink>
+            </Link>
           ))}
         </div>
       )}
