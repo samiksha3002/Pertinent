@@ -5,10 +5,12 @@ import ReusableServicesSection from "../../components/ReusableServicesSection";
 import PageBanner from "../../components/PageBanner";
 import service from "../../components/WhatWeServe"; // Assuming you have a service component
 import WhatWeServe from "../../components/WhatWeServe";
+import Preloader from "../../components/Preloader";
 
 const Service = () => {
   return (
     <div className="font-sans">
+      <Preloader />
       <Header />
       <PageBanner
         title="Services"

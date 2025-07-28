@@ -2,11 +2,14 @@ import React from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import PageBanner from "../../components/PageBanner";
-import OurJourney from "../../components/OurJourney"; // Assuming you have an OurJourney component
+import OurJourney from "../../components/OurJourney";
+import MissionVisionValues from "../../components/MissionVisionValues";
+import Preloader from "../../components/Preloader";
 
 const about = () => {
   return (
     <div className="font-sans">
+      <Preloader />
       <Header />
       <PageBanner
         title="About Us"
@@ -14,6 +17,7 @@ const about = () => {
         backgroundImage="/pertinent5.jpg" // ✅ Image in public folder
       />
       <OurJourney />
+      <MissionVisionValues />
       <Footer />
     </div>
   );

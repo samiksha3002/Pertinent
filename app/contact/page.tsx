@@ -3,10 +3,12 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import PageBanner from "../../components/PageBanner";
 import ContactSection from "../../components/ContactSection";
+import Preloader from "../../components/Preloader";
 
 const contact = () => {
   return (
     <div className="font-sans">
+      <Preloader />
       <Header />
       <PageBanner
         title="Contact  Us"

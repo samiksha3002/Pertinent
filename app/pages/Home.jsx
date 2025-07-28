@@ -7,10 +7,13 @@ import Footer from "../../components/Footer";
 import ServiceSection from "../../components/ServiceSection";
 import Testimonials from "../../components/Testimonials";
 import ProjectStats from "../../components/ProjectStats";
+import LandscapeImageSection from "../../components/LandscapeImageSection";
+import Preloader from "../../components/Preloader";
 
 const Home = () => {
   return (
     <div className="font-sans">
+      <Preloader />
       <Header />
       <HeroSection />
       <AboutUs />
@@ -18,6 +21,11 @@ const Home = () => {
       <whyChooseUs />
       <ProjectStats />
       <Testimonials />
+      <LandscapeImageSection
+        imageSrc="/pertinent3.jpg"
+        altText="Construction Landscape"
+        caption="Project: Residential High-Rise - Completed in 2024"
+      />
       <Footer />
     </div>
   );

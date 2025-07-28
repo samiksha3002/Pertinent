@@ -31,8 +31,10 @@ const Footer = () => {
             />
           </div>
           <p className="text-sm text-gray-400 leading-relaxed">
-            We are a civil engineer-led construction firm dedicated to quality,
-            innovation, and trust. Turning visions into strong realities.
+            PERTINENT is a construction services company, providing expert
+            project support services to General Contractors, Subcontractors, and
+            Suppliers in their daily tasks and throughout the life cycle of the
+            project. We are an extension of your team.
           </p>
         </div>
 
@@ -77,13 +79,13 @@ const Footer = () => {
           </h3>
           <div className="space-y-3 text-sm text-gray-300">
             <p className="flex items-center gap-2">
-              <FaPhoneAlt className="text-red-600" /> +91 9876543210
+              <FaPhoneAlt className="text-red-600" /> +91 940-408-0041
             </p>
             <p className="flex items-center gap-2">
-              <FaEnvelope className="text-red-600" /> info@pertinent.com
+              <FaEnvelope className="text-red-600" /> pertinent.cs@gmail.com
             </p>
             <a
-              href="https://wa.me/919876543210"
+              href="https://wa.me/919404080041"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 hover:text-green-500 transition"
