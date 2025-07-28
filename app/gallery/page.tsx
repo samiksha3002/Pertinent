@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import PageBanner from "../../components/PageBanner";
+import GalleryImg from "../../components/GalleryImg";
 
 // Assuming you have an OurJourney component
 
@@ -15,6 +16,7 @@ const gallery = () => {
         backgroundImage="/pertinent9.jpg" // ✅ Image in public folder
       />
 
+      <GalleryImg />
       <Footer />
     </div>
   );
