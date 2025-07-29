@@ -9,6 +9,7 @@ import Testimonials from "../../components/Testimonials";
 import ProjectStats from "../../components/ProjectStats";
 import LandscapeImageSection from "../../components/LandscapeImageSection";
 import Preloader from "../../components/Preloader";
+import CountriesWeserve from "../../components/CountriesWeServe";
 
 const Home = () => {
   return (
@@ -20,6 +21,7 @@ const Home = () => {
       <ServiceSection />
       <whyChooseUs />
       <ProjectStats />
+      <CountriesWeserve />
       <Testimonials />
       <LandscapeImageSection
         imageSrc="/pertinent3.jpg"

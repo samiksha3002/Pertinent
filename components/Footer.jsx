@@ -82,7 +82,8 @@ const Footer = () => {
               <FaPhoneAlt className="text-red-600" /> +91 940-408-0041
             </p>
             <p className="flex items-center gap-2">
-              <FaEnvelope className="text-red-600" /> pertinent.cs@gmail.com
+              <FaEnvelope className="text-red-600" />
+              projects@pertinentservices.com <br /> pertinent.cs@gmail.com
             </p>
             <a
               href="https://wa.me/919404080041"
@@ -94,21 +95,28 @@ const Footer = () => {
             </a>
           </div>
 
+          {/* Social Icons with Links */}
           <div className="mt-5 flex space-x-4 text-white">
             <a
-              href="#"
+              href="https://www.facebook.com/yourpage" // replace with your actual Facebook page URL
+              target="_blank"
+              rel="noopener noreferrer"
               className="p-2 bg-gray-800 rounded-full hover:bg-red-600 transition"
             >
               <FaFacebookF size={14} />
             </a>
             <a
-              href="#"
+              href="https://www.instagram.com/yourprofile" // replace with your actual Instagram handle
+              target="_blank"
+              rel="noopener noreferrer"
               className="p-2 bg-gray-800 rounded-full hover:bg-red-600 transition"
             >
               <FaInstagram size={14} />
             </a>
             <a
-              href="#"
+              href="https://www.linkedin.com/company/pertinentconstructionservices" // replace with your actual LinkedIn company profile
+              target="_blank"
+              rel="noopener noreferrer"
               className="p-2 bg-gray-800 rounded-full hover:bg-red-600 transition"
             >
               <FaLinkedinIn size={14} />

@@ -5,14 +5,14 @@ import { motion } from "framer-motion";
 
 // Stats to be animated
 const stats = [
-  { label: "Home Delivery", value: 698 },
-  { label: "Happy People", value: 1106 },
-  { label: "Tons Of Goods", value: 4469 },
-  { label: "Tree Plant", value: 754 },
+  { label: "Projects Delivered", value: 1000, suffix: "+" },
+  { label: "Manhours Saved", value: 20000, suffix: "+" },
+  { label: "Worth of Projects Estimated", value: 250, suffix: "M+" },
+  { label: "Years of AEC Industry Expertise", value: 7, suffix: "+" },
 ];
 
-// Counter animation
-const StatCounter = ({ value }) => {
+// Counter animation component
+const StatCounter = ({ value, suffix = "" }) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -35,7 +35,12 @@ const StatCounter = ({ value }) => {
     return () => clearInterval(timer);
   }, [value]);
 
-  return <span>{count.toLocaleString()}</span>;
+  return (
+    <span>
+      {count.toLocaleString()}
+      {suffix}
+    </span>
+  );
 };
 
 const ProjectStats = () => {
@@ -81,7 +86,7 @@ const ProjectStats = () => {
               className="px-4 py-6 border border-gray-200 rounded-xl shadow hover:shadow-md transition"
             >
               <h3 className="text-4xl font-bold text-black">
-                <StatCounter value={stat.value} />
+                <StatCounter value={stat.value} suffix={stat.suffix} />
               </h3>
               <p className="mt-2 text-gray-600 text-sm uppercase tracking-wide">
                 {stat.label}
