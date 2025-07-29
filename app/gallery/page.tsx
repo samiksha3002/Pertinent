@@ -14,7 +14,8 @@ const gallery = () => {
       <Header />
       <PageBanner
         title="Gallery"
-        description="We offer end-to-end construction solutions including residential, commercial, and industrial projects. From planning to execution, our civil-engineer-led team ensures quality, safety, and on-time delivery in every build."
+        description="Explore our gallery to witness the craftsmanship and quality behind every project we’ve delivered.
+From residential to industrial structures, each image reflects our engineering precision and commitment to excellence."
         backgroundImage="/pertinent9.jpg" // ✅ Image in public folder
       />
 

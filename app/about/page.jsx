@@ -13,7 +13,8 @@ const about = () => {
       <Header />
       <PageBanner
         title="About Us"
-        description="We offer end-to-end construction solutions including residential, commercial, and industrial projects. From planning to execution, our civil-engineer-led team ensures quality, safety, and on-time delivery in every build."
+        description="We are a civil engineer-led construction company delivering excellence in infrastructure and residential projects.
+Our commitment to innovation, structural integrity, and timely delivery sets us apart in the construction industry."
         backgroundImage="/pertinent5.jpg" // ✅ Image in public folder
       />
       <OurJourney />

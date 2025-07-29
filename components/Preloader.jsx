@@ -22,7 +22,7 @@ const Preloader = () => {
           transition={{ duration: 0.8 }}
         >
           <motion.img
-            src="/Rhombus.gif"
+            src="/PCS Logo white.png"
             alt="Loading..."
             className="h-28 w-auto"
             initial={{ scale: 0.9, opacity: 0 }}

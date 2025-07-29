@@ -2,6 +2,7 @@
 
 import React from "react";
 import { FaQuoteLeft, FaStar } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const testimonials = [
   {
@@ -30,7 +31,13 @@ const testimonials = [
 const Testimonials = () => {
   return (
     <section className="bg-gray-50 py-20 px-6" id="testimonials">
-      <div className="max-w-7xl mx-auto text-center mb-12">
+      <motion.div
+        className="max-w-7xl mx-auto text-center mb-12"
+        initial={{ y: 40, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+      >
         <h2 className="text-4xl font-bold text-black mb-2">
           What <span className="text-red-600">Clients Say</span>
         </h2>
@@ -38,13 +45,17 @@ const Testimonials = () => {
           Hear from our trusted clients who’ve experienced our civil excellence.
         </p>
         <div className="h-1 w-14 bg-red-600 mx-auto mt-4 rounded-full" />
-      </div>
+      </motion.div>
 
       <div className="grid md:grid-cols-3 gap-6 max-w-7xl mx-auto">
         {testimonials.map((t, index) => (
-          <div
+          <motion.div
             key={index}
             className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition border border-gray-100"
+            initial={{ y: 50, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: index * 0.2 }}
+            viewport={{ once: true }}
           >
             <FaQuoteLeft className="text-red-600 text-2xl mb-4" />
             <p className="text-gray-700 text-sm mb-4">{t.feedback}</p>
@@ -57,7 +68,7 @@ const Testimonials = () => {
             </div>
             <h4 className="text-md font-semibold text-black">{t.name}</h4>
             <p className="text-sm text-gray-500">{t.role}</p>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>

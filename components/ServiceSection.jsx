@@ -9,6 +9,7 @@ import {
   FaHardHat,
   FaSyncAlt,
 } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const services = [
   {
@@ -45,29 +46,44 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="bg-white py-20 px-6">
+    <section id="services" className="bg-white py-24 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-        {/* Left Side - Image */}
-        <div className="relative rounded-3xl shadow-xl overflow-hidden">
+        {/* Left Side - Animated Image */}
+        <motion.div
+          initial={{ x: -80, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="relative rounded-3xl shadow-xl overflow-hidden"
+        >
           <img
-            src="/pertinent3.jpg" // Replace with your image path
+            src="/pertinent3.jpg"
             alt="construction planning"
-            className="object-cover w-full h-full rounded-2xl"
+            className="object-cover w-full h-[400px] rounded-2xl"
           />
           <div className="absolute bottom-4 left-4 bg-black text-white px-6 py-3 rounded-xl shadow-lg text-sm md:text-base">
             Let’s Build Something Great Together!
           </div>
-        </div>
+        </motion.div>
 
-        {/* Right Side - Services Grid */}
-        <div>
+        {/* Right Side - Services */}
+        <motion.div
+          initial={{ x: 80, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
           <h2 className="text-3xl md:text-4xl font-bold mb-8 text-black">
             Our <span className="text-red-600">Core Services</span>
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {services.map((service, index) => (
-              <div
+              <motion.div
                 key={index}
+                initial={{ rotateY: 90, opacity: 0 }}
+                whileInView={{ rotateY: 0, opacity: 1 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
                 className="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-lg transition duration-300"
               >
                 <div className="text-red-600 bg-gray-200 p-3 rounded-full text-xl">
@@ -79,10 +95,10 @@ const ServicesSection = () => {
                   </h3>
                   <p className="text-gray-600 text-sm">{service.desc}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
