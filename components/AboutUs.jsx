@@ -21,14 +21,19 @@ const AboutUs = () => {
             Who We <span className="text-red-600">Are</span>
           </h2>
           <p className="text-gray-800 text-lg mb-4 leading-relaxed">
-            Pertinent is a next-gen civil engineering firm blending structural
-            excellence with modern innovation. We specialize in delivering
-            sustainable, durable, and functional construction solutions.
+            Pertinent Construction Services is a trusted construction services
+            partner to the Architecture, Engineering, and Construction (AEC)
+            industry. We specialize in quantity takeoff, project controls, and
+            bid management, supporting general contractors, subcontractors, and
+            suppliers across commercial, multifamily, retail, and industrial
+            projects.
           </p>
           <p className="text-gray-600 text-base leading-relaxed">
-            Our team of certified engineers, architects, and project managers
-            ensures seamless execution of residential and commercial projects
-            with technical precision and unmatched integrity.
+            With hands-on expertise across all trades in building construction,
+            we act as an extension of your team — helping you bid smarter,
+            manage projects seamlessly, and deliver with confidence. Whether
+            you're scaling your business or navigating tight schedules,
+            Pertinent is built to support you at every stage.
           </p>
         </motion.div>
 

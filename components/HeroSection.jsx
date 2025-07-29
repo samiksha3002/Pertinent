@@ -24,14 +24,15 @@ const HeroSection = () => {
         className="text-center max-w-3xl z-10 relative"
       >
         <h1 className="text-5xl md:text-6xl font-bold leading-tight">
-          Building the Future, <br />
-          <span className="text-red-600">One Structure</span> at a Time
+          Built to be
+          <span className="text-red-600">Pertinent</span>
         </h1>
         <p className="mt-6 text-gray-300 text-lg">
-          Welcome to <strong>Pertinent</strong>, your trusted{" "}
-          <strong>civil engineering</strong> and{" "}
-          <strong>construction services company</strong> delivering precision,
-          durability, and value to every project.
+          Welcome to <strong>Pertinent Construction Services</strong>, a trusted
+          outsourcing partner for the AEC industry, offering reliable
+          construction estimation, project coordination, and end-to-end support
+          for general contractors, subcontractors, and material suppliers —
+          helping you deliver successful projects, on time and within budget.
         </p>
 
         <motion.a
@@ -40,7 +41,7 @@ const HeroSection = () => {
           whileTap={{ scale: 0.95 }}
           className="mt-8 inline-block px-8 py-3 bg-red-600 hover:bg-red-700 text-white rounded-full font-medium transition duration-300"
         >
-          Explore Our Projects
+          Explore Our Services
         </motion.a>
       </motion.div>
     </section>

@@ -1,46 +1,28 @@
 "use client";
 
 import React from "react";
-import {
-  FaBuilding,
-  FaTools,
-  FaHome,
-  FaWarehouse,
-  FaHardHat,
-  FaSyncAlt,
-} from "react-icons/fa";
 import { motion } from "framer-motion";
+import {
+  FaCalculator,
+  FaClipboardList,
+  FaEnvelopeOpenText,
+} from "react-icons/fa";
 
 const services = [
   {
-    icon: <FaBuilding />,
-    title: "Structural Engineering",
-    desc: "Reliable frameworks for bridges, buildings, and infrastructure.",
+    icon: <FaCalculator size={22} />,
+    title: "Quantity Takeoff & Estimation",
+    desc: "Accurate material takeoffs across all trades for building construction — helping contractors create competitive bids, reduce material waste, and stay within budget from the start.",
   },
   {
-    icon: <FaHardHat />,
-    title: "Site Supervision",
-    desc: "Complete monitoring for safety, quality, and timely delivery.",
+    icon: <FaClipboardList size={22} />,
+    title: "Project Controls Management",
+    desc: "Streamlined management of submittals, RFIs, drawing revisions, and closeout documentation — ensuring smooth workflows, reduced delays, and full project compliance.",
   },
   {
-    icon: <FaHome />,
-    title: "Residential Construction",
-    desc: "From blueprint to keys — homes built with precision.",
-  },
-  {
-    icon: <FaTools />,
-    title: "Commercial Projects",
-    desc: "Quality construction for malls, offices, and commercial buildings.",
-  },
-  {
-    icon: <FaWarehouse />,
-    title: "Industrial Sheds & Warehouses",
-    desc: "Heavy-duty structures tailored to industrial needs.",
-  },
-  {
-    icon: <FaSyncAlt />,
-    title: "Renovation & Remodeling",
-    desc: "Transform existing spaces with expert civil planning.",
+    icon: <FaEnvelopeOpenText size={22} />,
+    title: "Bid Management & ITB Support",
+    desc: "End-to-end support for invitation-to-bid (ITB) processes, including vendor communication, bid tracking, and document coordination — so you never miss a qualified opportunity.",
   },
 ];
 
@@ -76,24 +58,26 @@ const ServicesSection = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-8 text-black">
             Our <span className="text-red-600">Core Services</span>
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="space-y-6">
             {services.map((service, index) => (
               <motion.div
                 key={index}
-                initial={{ rotateY: 90, opacity: 0 }}
-                whileInView={{ rotateY: 0, opacity: 1 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
                 viewport={{ once: true }}
-                className="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-lg transition duration-300"
+                className="flex items-start space-x-4 p-5 bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition duration-300"
               >
-                <div className="text-red-600 bg-gray-200 p-3 rounded-full text-xl">
+                <div className="text-red-600 bg-gray-200 p-3 rounded-full">
                   {service.icon}
                 </div>
                 <div>
-                  <h3 className="font-semibold text-black text-lg mb-1">
+                  <h3 className="font-semibold text-black text-lg mb-2">
                     {service.title}
                   </h3>
-                  <p className="text-gray-600 text-sm">{service.desc}</p>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    {service.desc}
+                  </p>
                 </div>
               </motion.div>
             ))}

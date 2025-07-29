@@ -35,7 +35,7 @@ export default function RootLayout({
         <link
           rel="icon"
           href="/PCS Logo Without text white.jpg"
-          type="image/jpg"
+          type="image/jpg "
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
