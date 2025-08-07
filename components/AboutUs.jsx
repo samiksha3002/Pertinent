@@ -33,7 +33,7 @@ const AboutUs = () => {
             we act as an extension of your team — helping you bid smarter,
             manage projects seamlessly, and deliver with confidence. Whether
             you're scaling your business or navigating tight schedules
-            <b>Pertinent is built to support you at every stage.</b>
+            <b> Pertinent is built to support you at every stage.</b>
           </p>
         </motion.div>
 

@@ -2,49 +2,29 @@
 
 import React from "react";
 import {
-  FaBuilding,
-  FaHardHat,
-  FaTools,
-  FaWarehouse,
-  FaHome,
-  FaSyncAlt,
+  FaCalculator,
+  FaClipboardList,
+  FaEnvelopeOpenText,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const services = [
   {
-    icon: <FaBuilding />,
-    title: "Structural Engineering",
-    description:
-      "Reliable frameworks for bridges, buildings, and infrastructure.",
+    icon: <FaCalculator size={22} />,
+    title: "Quantity Takeoff & Estimation",
+    desc: "Accurate material takeoffs across all trades for building construction — helping contractors create competitive bids, reduce material waste, and stay within budget from the start.",
   },
   {
-    icon: <FaHardHat />,
-    title: "Site Supervision",
-    description: "Project monitoring for quality, safety, and timely delivery.",
+    icon: <FaClipboardList size={22} />,
+    title: "Project Controls Management",
+    desc: "Streamlined management of submittals, RFIs, drawing revisions, and closeout documentation — ensuring smooth workflows, reduced delays, and full project compliance.",
   },
   {
-    icon: <FaHome />,
-    title: "Residential Construction",
-    description: "From design to completion — homes built with precision.",
-  },
-  {
-    icon: <FaTools />,
-    title: "Commercial Projects",
-    description: "Construction for offices, malls, and commercial sites.",
-  },
-  {
-    icon: <FaWarehouse />,
-    title: "Industrial Sheds",
-    description: "Heavy-duty structures for operational needs.",
-  },
-  {
-    icon: <FaSyncAlt />,
-    title: "Remodeling",
-    description: "Upgrade spaces with civil expertise and planning.",
+    icon: <FaEnvelopeOpenText size={22} />,
+    title: "Bid Management & ITB Support",
+    desc: "End-to-end support for invitation-to-bid (ITB) processes, including vendor communication, bid tracking, and document coordination — so you never miss a qualified opportunity.",
   },
 ];
-
 const ReusableServicesSection = () => {
   return (
     <section id="services" className="bg-white py-20 px-6">

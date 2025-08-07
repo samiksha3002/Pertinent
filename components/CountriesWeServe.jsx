@@ -66,15 +66,17 @@ const CountriesWeServe = () => {
             viewport={{ once: true }}
             className="grid grid-cols-2 gap-4 text-sm text-black font-medium"
           >
-            {["USA", "Australia", "Canada", "India"].map((country, index) => (
-              <motion.li
-                key={index}
-                variants={itemVariants}
-                className="bg-gray-100 px-4 py-2 rounded-full border-l-4 border-red-600 shadow-sm"
-              >
-                {country}
-              </motion.li>
-            ))}
+            {["America", "Australia", "Canada", "India"].map(
+              (country, index) => (
+                <motion.li
+                  key={index}
+                  variants={itemVariants}
+                  className="bg-gray-100 px-4 py-2 rounded-full border-l-4 border-red-600 shadow-sm"
+                >
+                  {country}
+                </motion.li>
+              )
+            )}
           </motion.ul>
         </motion.div>
       </div>

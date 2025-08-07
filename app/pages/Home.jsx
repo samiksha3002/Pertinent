@@ -26,7 +26,6 @@ const Home = () => {
       <LandscapeImageSection
         imageSrc="/pertinent3.jpg"
         altText="Construction Landscape"
-        caption="Project: Residential High-Rise - Completed in 2024"
       />
       <Footer />
     </div>
