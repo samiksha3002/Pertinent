@@ -28,24 +28,20 @@ const OurJourney = () => {
           className="text-lg leading-relaxed space-y-6 text-gray-700"
         >
           <p>
-            Our journey began, working with top General Contractors and
-            Subcontractors in the AEC industry, including:
-          </p>
-
-          <ul className="list-disc pl-5 space-y-2 text-gray-600">
-            <li>Cadence Mcshane</li>
-            <li>Skiles Group</li>
-            <li>Muckleroy Falls</li>
-            <li>The Door Company</li>
-            <li>The Demo Company</li>
-          </ul>
-
+            Founded with a vision to bridge the gap between accuracy,
+            responsiveness, and real construction needs, Pertinent has evolved
+            into a trusted back-end partner for general contractors,
+            subcontractors, suppliers and developers.
+          </p>{" "}
+          <br />
+          Over the years, we’ve supported our clients across multiple scopes, on
+          thousands of projects—from single-storey builds to complex multi-use
+          developments, spanning commercial, residential, retail, and public
+          infrastructure.
           <p>
-            Recognizing the industry's growing need for quality-driven
-            outsourcing, we established{" "}
-            <strong className="text-black font-semibold">Pertinent</strong>
-            —a trusted partner focused on delivering accurate, timely, and
-            cost-effective construction support services.
+            As a remote team based in India, we bring together technical
+            expertise, construction understanding, and process efficiency to
+            help you stay competitive, organized, and ahead of deadlines.
           </p>
         </motion.div>
       </div>

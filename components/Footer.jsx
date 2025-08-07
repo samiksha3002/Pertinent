@@ -34,7 +34,7 @@ const Footer = () => {
             PERTINENT is a construction services company, providing expert
             project support services to General Contractors, Subcontractors, and
             Suppliers in their daily tasks and throughout the life cycle of the
-            project. We are an extension of your team.
+            project.<b>We are an extension of your team.</b>
           </p>
         </div>
 
@@ -61,7 +61,7 @@ const Footer = () => {
             </li>
             <li>
               <a href="/gallery" className="hover:text-red-600 transition">
-                Gallery
+                Projects
               </a>
             </li>
             <li>
@@ -85,14 +85,6 @@ const Footer = () => {
               <FaEnvelope className="text-red-600" />
               projects@pertinentservices.com <br /> pertinent.cs@gmail.com
             </p>
-            <a
-              href="https://wa.me/919404080041"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 hover:text-green-500 transition"
-            >
-              <FaWhatsapp className="text-green-500" /> Chat on WhatsApp
-            </a>
           </div>
 
           {/* Social Icons with Links */}

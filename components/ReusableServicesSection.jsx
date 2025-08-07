@@ -59,8 +59,7 @@ const ReusableServicesSection = () => {
           Our <span className="text-red-600">Services</span>
         </h2>
         <p className="text-gray-500 max-w-xl mx-auto">
-          Explore the wide range of construction and civil engineering services
-          we offer.
+          Making Construction Smoother — Here’s How
         </p>
         <div className="h-1 w-14 bg-red-600 mx-auto mt-4 rounded-full" />
       </motion.div>

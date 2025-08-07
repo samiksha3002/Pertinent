@@ -28,12 +28,12 @@ const AboutUs = () => {
             suppliers across commercial, multifamily, retail, and industrial
             projects.
           </p>
-          <p className="text-gray-600 text-base leading-relaxed">
+          <p>
             With hands-on expertise across all trades in building construction,
             we act as an extension of your team — helping you bid smarter,
             manage projects seamlessly, and deliver with confidence. Whether
             you're scaling your business or navigating tight schedules,
-            Pertinent is built to support you at every stage.
+            <b>Pertinent is built to support you at every stage.</b>
           </p>
         </motion.div>
 

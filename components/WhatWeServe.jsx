@@ -44,13 +44,6 @@ const WhatWeServe = () => {
         viewport={{ once: true }}
         className="max-w-7xl mx-auto text-center mb-12"
       >
-        <h2 className="text-4xl font-bold text-black mb-2">
-          What <span className="text-red-600">We Serve</span>
-        </h2>
-        <p className="text-gray-600 max-w-xl mx-auto">
-          From start to finish, we handle every phase of construction with
-          precision and professionalism.
-        </p>
         <div className="h-1 w-16 bg-red-600 mx-auto mt-4 rounded-full" />
       </motion.div>
 

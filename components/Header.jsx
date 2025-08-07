@@ -11,7 +11,7 @@ const navLinks = [
   { name: "Home", to: "/", isPage: true },
   { name: "About", to: "/about", isPage: true },
   { name: "Services", to: "/service", isPage: true },
-  { name: "Gallery", to: "/gallery", isPage: true },
+  { name: "Projects", to: "/gallery", isPage: true },
   { name: "Contact", to: "/contact", isPage: true },
 ];
 

@@ -50,7 +50,7 @@ const ContactSection = () => {
                   href="mailto:u.chourasia@pertinentservices.com"
                   className="hover:underline"
                 >
-                  u.chourasia@pertinentservices.com
+                  projects@pertinentservices.com
                 </a>
               </p>
             </div>
@@ -189,11 +189,11 @@ const ContactSection = () => {
       <div className="max-w-7xl mx-auto mt-16 rounded-lg overflow-hidden shadow-md">
         <iframe
           title="Pertinent Office Location on Google Map"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3733.7764961264573!2d79.05712327516891!3d21.13061258054056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c08cd9eb569f%3A0xa1f218c92c38e5f4!2sA2b%20Infotech%2C%20RBI%20Colony%2C%20Nagpur%2C%20Maharashtra%20440025!5e0!3m2!1sen!2sin!4v1690123456789!5m2!1sen!2sin"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3733.776484525125!2d79.05970281532428!3d21.130624185925317!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c08cd9eb569f%3A0xa1f218c92c38e5f4!2sA2b%20Infotech%2C%20RBI%20Colony%2C%205%20Layout%2C%20Nagpur%2C%20Maharashtra%20440025%2C%20India!5e0!3m2!1sen!2sin!4v1691423414412!5m2!1sen!2sin"
           width="100%"
           height="400"
           style={{ border: 0 }}
-          allowFullScreen
+          allowFullScreen=""
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
           className="w-full h-[400px]"

@@ -13,8 +13,7 @@ const about = () => {
       <Header />
       <PageBanner
         title="About Us"
-        description="We are a civil engineer-led construction company delivering excellence in infrastructure and residential projects.
-Our commitment to innovation, structural integrity, and timely delivery sets us apart in the construction industry."
+        description="At Pertinent Construction Services, we’re not just a service provider—we’re an extension of your team. We partner with construction firms across the globe to support them throughout the entire project lifecycle, from preconstruction planning and bidding to execution, closeout, and beyond. "
         backgroundImage="/pertinent5.jpg" // ✅ Image in public folder
       />
       <OurJourney />

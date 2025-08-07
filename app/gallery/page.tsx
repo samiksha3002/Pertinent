@@ -13,7 +13,7 @@ const gallery = () => {
       <Preloader />
       <Header />
       <PageBanner
-        title="Gallery"
+        title="Projects"
         description="Explore our gallery to witness the craftsmanship and quality behind every project we’ve delivered.
 From residential to industrial structures, each image reflects our engineering precision and commitment to excellence."
         backgroundImage="/pertinent9.jpg" // ✅ Image in public folder

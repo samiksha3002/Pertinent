@@ -25,14 +25,15 @@ const HeroSection = () => {
       >
         <h1 className="text-5xl md:text-6xl font-bold leading-tight">
           Built to be
-          <span className="text-red-600">Pertinent</span>
+          <span className="text-red-600"> Pertinent</span>
         </h1>
         <p className="mt-6 text-gray-300 text-lg">
           Welcome to <strong>Pertinent Construction Services</strong>, a trusted
           outsourcing partner for the AEC industry, offering reliable
           construction estimation, project coordination, and end-to-end support
           for general contractors, subcontractors, and material suppliers —
-          helping you deliver successful projects, on time and within budget.
+          helping you deliver successful projects,
+          <b> on time and within budget.</b>
         </p>
 
         <motion.a

@@ -56,7 +56,7 @@ const ServicesSection = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-8 text-black">
-            Our <span className="text-red-600">Core Services</span>
+            Our <span className="text-red-600">Services</span>
           </h2>
           <div className="space-y-6">
             {services.map((service, index) => (
