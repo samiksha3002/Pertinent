@@ -12,7 +12,7 @@ const contact = () => {
       <Header />
       <PageBanner
         title="Contact  Us"
-        description="Get in touch with our expert civil engineering team for tailored construction solutions.
+        description="Get in touch with our expert  team for tailored solutions.
 We’re just a message away to help you build with trust, quality, and precision."
         backgroundImage="/pertinent8.jpg" // ✅ Image in public folder
       />

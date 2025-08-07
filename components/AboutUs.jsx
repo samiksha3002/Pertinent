@@ -32,7 +32,7 @@ const AboutUs = () => {
             With hands-on expertise across all trades in building construction,
             we act as an extension of your team — helping you bid smarter,
             manage projects seamlessly, and deliver with confidence. Whether
-            you're scaling your business or navigating tight schedules,
+            you're scaling your business or navigating tight schedules
             <b>Pertinent is built to support you at every stage.</b>
           </p>
         </motion.div>
