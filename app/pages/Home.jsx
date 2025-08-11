@@ -10,6 +10,8 @@ import ProjectStats from "../../components/ProjectStats";
 import LandscapeImageSection from "../../components/LandscapeImageSection";
 import Preloader from "../../components/Preloader";
 import CountriesWeserve from "../../components/CountriesWeServe";
+import OurApproach from "../../components/OurApproach";
+import PertinentAdvantages from "../../components/PertinentAdvantages";
 
 const Home = () => {
   return (
@@ -20,6 +22,8 @@ const Home = () => {
       <AboutUs />
       <ServiceSection />
       <whyChooseUs />
+      <OurApproach />
+      <PertinentAdvantages />
       <ProjectStats />
       <CountriesWeserve />
       <Testimonials />

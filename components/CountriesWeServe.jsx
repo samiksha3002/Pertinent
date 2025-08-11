@@ -31,9 +31,9 @@ const CountriesWeServe = () => {
           className="flex justify-center"
         >
           <motion.img
-            src="/locationpage.png"
+            src="/final map.jpg"
             alt="Countries We Serve"
-            className="w-80 h-auto rounded-xl shadow-lg"
+            className="w-[500px] md:w-[600px] h-auto rounded-xl shadow-lg"
             whileHover={{ scale: 1.03 }}
             transition={{ duration: 0.3 }}
           />
