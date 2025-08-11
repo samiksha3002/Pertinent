@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 const steps = [
@@ -81,24 +82,82 @@ const steps = [
 ];
 
 export default function ProcessFlow() {
-  return (
-    <section className="py-20 px-4 md:px-12 lg:px-24 bg-white text-red-700">
-      <h2 className="text-4xl font-bold text-center mb-16">Process</h2>
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-      <div className="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">
+  const togglePopup = (index: number) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
+
+  // Close popup when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
+        setActiveIndex(null);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  return (
+    <section
+      className="py-20 px-4 md:px-12 lg:px-24 bg-gradient-to-b from-gray-50 via-white to-gray-100"
+      style={{ perspective: "1200px" }}
+    >
+      <h2 className="text-4xl font-bold text-center mb-16 text-gray-900">
+        Process
+      </h2>
+
+      <div
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 max-w-7xl mx-auto"
+        ref={containerRef}
+      >
         {steps.map((step, idx) => (
-          <div
-            key={idx}
-            className="relative w-full sm:w-[45%] lg:w-[30%] border border-red-300 p-5 rounded-lg shadow hover:shadow-lg transition-all duration-300 bg-white"
-          >
-            <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
-            <ul className="list-disc list-inside text-sm text-gray-800 space-y-1">
-              {step.content.map((item, i) => (
-                <li key={i}>{item}</li>
-              ))}
-            </ul>
+          <div key={idx} className="relative">
+            {/* Card */}
+            <motion.div
+              whileHover={{
+                rotateX: 5,
+                rotateY: 5,
+                scale: 1.03,
+                boxShadow: "0px 12px 30px rgba(0,0,0,0.15)",
+              }}
+              transition={{ type: "spring", stiffness: 200, damping: 15 }}
+              className="bg-white rounded-xl shadow-lg cursor-pointer p-6 text-center"
+              onClick={() => togglePopup(idx)}
+            >
+              <h3 className="text-lg font-semibold text-red-600">
+                {step.title}
+              </h3>
+            </motion.div>
+
+            {/* Popup */}
+            <AnimatePresence>
+              {activeIndex === idx && (
+                <motion.div
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -5 }}
+                  transition={{ duration: 0.25 }}
+                  className="absolute left-1/2 -translate-x-1/2 mt-2 w-72 bg-white shadow-xl rounded-xl border border-gray-200 p-4 z-50"
+                  style={{ top: "100%" }}
+                >
+                  <ul className="list-disc list-inside text-sm text-gray-700 space-y-1">
+                    {step.content.map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
+                  </ul>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Arrow */}
             {idx < steps.length - 1 && (
-              <div className="absolute -right-4 top-1/2 transform -translate-y-1/2 hidden lg:block">
+              <div className="hidden lg:block absolute -right-8 top-8">
                 <ArrowRight className="text-red-500 w-6 h-6" />
               </div>
             )}
