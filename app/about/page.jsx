@@ -9,7 +9,6 @@ import Preloader from "../../components/Preloader";
 const about = () => {
   return (
     <div className="font-sans">
-      <Preloader />
       <Header />
       <PageBanner
         title="About Us"

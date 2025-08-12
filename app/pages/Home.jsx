@@ -23,6 +23,8 @@ const Home = () => {
       <ServiceSection />
       <whyChooseUs />
       <OurApproach />
+
+      {/* Assuming PertinentMethods is a component that lists methods */}
       <PertinentAdvantages />
       <ProjectStats />
       <CountriesWeserve />

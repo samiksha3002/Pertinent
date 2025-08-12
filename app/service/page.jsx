@@ -14,7 +14,6 @@ import ProcessFlow from "../../components/ProcessFlow";
 const Service = () => {
   return (
     <div className="font-sans">
-      <Preloader />
       <Header />
       <PageBanner
         title="Services"

@@ -8,7 +8,6 @@ import Preloader from "../../components/Preloader";
 const contact = () => {
   return (
     <div className="font-sans">
-      <Preloader />
       <Header />
       <PageBanner
         title="Contact  Us"

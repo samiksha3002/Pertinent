@@ -51,13 +51,13 @@ const Header = () => {
       <div
         className={clsx(
           "px-6 py-4 max-w-7xl mx-auto flex items-center justify-between transition-colors duration-300 backdrop-blur-md",
-          scrolled ? "bg-black/90" : "bg-transparent"
+          scrolled ? "bg-transparent" : "bg-transparent"
         )}
       >
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2">
           <img
-            src={scrolled ? "/PCS Logo white.png" : "/PCS Logo white.png"} // You can change to a dark logo if available
+            src={scrolled ? "/PCS Logo.png" : "/PCS Logo white.png"} // You can change to a dark logo if available
             alt="Pertinent Logo"
             className="h-14 w-auto transition duration-300 hover:scale-105"
           />
@@ -74,8 +74,8 @@ const Header = () => {
                 pathname === link.to
                   ? "text-red-500"
                   : scrolled
-                  ? "text-white hover:text-red-500"
-                  : "text-white hover:text-red-500"
+                  ? "text-black hover:text-red-500" // 🔹 Black when scrolled
+                  : "text-white hover:text-red-500" // 🔹 White on initial view
               )}
             >
               {link.name}

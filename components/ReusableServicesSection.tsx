@@ -1,235 +1,209 @@
 "use client";
 
 import React, { useState } from "react";
-import {
-  FaCalculator,
-  FaClipboardList,
-  FaEnvelopeOpenText,
-} from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
+import {
+  ChevronRight,
+  ChevronDown,
+  Calculator,
+  Calendar,
+  DollarSign,
+} from "lucide-react";
 
-// Fix for Framer Motion + TypeScript className issue
-const MotionDiv: any = motion.div;
-const MotionUl: any = motion.ul;
+interface SubPoint {
+  title: string;
+  description: string;
+}
 
-const data = [
+interface CardData {
+  id: number;
+  title: string;
+  definition: string;
+  subPoints: SubPoint[];
+  icon: JSX.Element;
+}
+
+const cardsData: CardData[] = [
   {
-    icon: <FaCalculator size={22} />,
+    id: 1,
     title: "Quantity Takeoff & Estimation",
-    desc: "Accurate material takeoffs across all trades for building construction — helping contractors create competitive bids, reduce material waste, and stay within budget from the start.",
-    subs: [
+    definition:
+      "Accurately calculate material quantities and costs for efficient project planning.",
+    icon: <Calculator className="h-10 w-10 text-red-500" />,
+    subPoints: [
       {
         title: "General Contractors",
-        points: [
-          "Site Work & Civil: Demolition, Excavation, Utilities, Paving, Striping, Signage, Curb, Gutter, ADA Compliance, Landscaping & Irrigation",
-          "Concrete & Structural Work: Foundations, Slabs, Tilt Walls, Rebar, Post-tension",
-          "Masonry & Metals: CMU, Brick, Stone, Structural & Misc. Steel",
-          "Wood, Plastics & Composites: Framing, Sheathing, Millwork",
-          "Thermal & Moisture Protection: Insulation, Roofing, Waterproofing",
-          "Openings: Doors, Frames, Hardware, Windows, Storefronts",
-          "Finishes: Drywall, Ceilings, Flooring, Painting, Specialties",
-          "Specialties & Equipment: Signage, Toilet Partitions, Fire Extinguishers, Signage",
-          "MEPF Systems: Mechanical – HVAC, Ducts, Equipment, Electrical – Lighting, Power, Panels, Plumbing – Pipes, Fixtures, Valves, Fire Protection – Sprinklers, Piping, Heads",
-        ],
+        description:
+          "Detailed estimates for managing large construction projects.",
       },
       {
-        title: "Subcontractors",
-        points: [
-          "Drywall & Framing Contractors: Wall types, layers, framing, ceilings",
-          "Painting Contractors: Wall, ceiling, door, trim, special coatings",
-          "Finish Carpenters / Trim Contractors: Baseboards, casing, crown, wainscoting",
-          "Flooring Contractors: Carpet, LVT, VCT, Wood, Tile, Cove base",
-          "Door & Hardware Contractors: Door schedules, hardware sets, frames",
-          "Mechanical Contractors: Ducting, HVAC equipment, accessories",
-          "Electrical Contractors: Conduit, wiring, fixtures, panels",
-          "Plumbing Contractors: Piping, fixtures, valves, fittings",
-          "Fire Protection Contractors: Sprinkler systems, piping, heads",
-          "Striping Contractors: Parking lot striping, signage, pavement markings",
-          "Landscaping Contractors: Sod, planting, irrigation, edging",
-        ],
+        title: "Sub Contractors",
+        description: "Precise cost breakdowns for specialized trade work.",
       },
     ],
   },
   {
-    icon: <FaClipboardList size={22} />,
+    id: 2,
     title: "Project Controls Management",
-    desc: "Streamlined management of submittals, RFIs, drawing revisions, and closeout documentation — ensuring smooth workflows, reduced delays, and full project compliance.",
-    subs: [
+    definition:
+      "Plan timelines and resources effectively for on-time delivery.",
+    icon: <Calendar className="h-10 w-10 text-red-500" />,
+    subPoints: [
       {
-        title: "General Contractors",
-        points: [
-          "Submittal Management: Comprehensive submittal review and tracking to ensure compliance with construction documents, fast-track approvals, and maintain seamless coordination across all construction trades.",
-          "Constructability Reviews: Identify conflicts, gaps, or constructability issues early to reduce change orders and rework during execution.",
-          "Drawing & Revision Management: Accurate tracking of drawing updates and revisions ensures teams build with the latest plans. All changes are communicated to the general contractor to evaluate cost and schedule impacts—supporting efficient and informed project execution.",
-          "RFI Management: Create, manage, and track RFIs to ensure timely responses, reduce project delays, and eliminate communication gaps.",
-          "Change Order Creation: Prepare and document change orders with detailed scope, pricing, and impact analysis to ensure transparency, approval tracking, and alignment with project budgets and schedules.",
-          "Material Procurement Tracking: Keep vendors, suppliers, and field teams aligned by managing delivery schedules and long-lead items.",
-          "CM Platform Management: Efficient setup and management of construction platforms like Procore, Prolog etc to track RFIs, submittals, change orders, and drawings—ensuring real-time coordination and project visibility.",
-          "Closeout Documentation: Compile and organize all required closeout materials—O&M manuals, warranties, punch lists, and certifications.",
-        ],
+        title: "Milestone Planning",
+        description: "Track project phases with clear checkpoints.",
       },
       {
-        title: "Subcontractors",
-        points: [
-          "Drawing & Revision Tracking: Ensure your field crews always work with the most up-to-date drawings and avoid costly mistakes.",
-          "Submittal & RFI Support: Prepare, log, and track RFIs and submittals to keep your approvals moving and projects on track.",
-          "Change Order Documentation: Record scope changes accurately for transparent communication and timely billing.",
-          "Punch List Tracking: Ensure completion of all pending items before handover to minimize delays.",
-          "Closeout Documentation: Prepare and organize all required closeout packages for smooth turnover and final payment.",
-        ],
+        title: "Resource Allocation",
+        description: "Optimize manpower and material usage.",
       },
     ],
   },
   {
-    icon: <FaEnvelopeOpenText size={22} />,
+    id: 3,
     title: "Bid Management & ITB Support",
-    desc: "End-to-end support for invitation-to-bid (ITB) processes, including vendor communication, bid tracking, and document coordination — so you never miss a qualified opportunity.",
-    subs: [
+    definition:
+      "Maintain financial oversight throughout the project lifecycle.",
+    icon: <DollarSign className="h-10 w-10 text-red-500" />,
+    subPoints: [
       {
-        title:
-          "Streamlining Bid Processes for General Contractors & Subcontractors",
-        points: [
-          "Invitation Review:Review ITB documents to identify relevant trades, scope of work, and bid requirements.",
-          "Bid Package Organization:Structure and manage ITB documents including drawings, specs, and CSI-based scope breakdowns.",
-          "Trade Coverage & Outreach:Identify missing trades, reach out to qualified subcontractors/vendors, and maximize bid coverage",
-          " Live Bid Tracking:Maintain real-time bid trackers to monitor incoming bids, follow-ups, and coverage gaps.",
-          " Follow-ups & Communication Logs:Manage consistent communication with bidders and clients—reminders, updates, and clarifications.",
-          " Bid Comparison & Scope Sheets:Prepare detailed side-by-side bid comparisons and scope coverage matrices.",
-          " Proposal Review & Support:Assist in preparing, formatting, and submitting clear, compliant proposals with accurate inclusions and exclusions.",
-          "Organized Submission Management:Maintain all bid-related documents—proposals, RFIs, addenda, and notes—in clean, searchable formats.",
-        ],
+        title: "Expense Tracking",
+        description: "Monitor spending in real-time.",
+      },
+      {
+        title: "Budget Forecasting",
+        description: "Predict future costs for proactive decisions.",
       },
     ],
   },
 ];
 
-const formatPoint = (point: string) => {
-  const [boldPart, ...rest] = point.split(":");
-  return (
-    <>
-      <strong>{boldPart}:</strong> {rest.join(":").trim()}
-    </>
-  );
-};
-
-const ReusableServicesSection = () => {
-  const [openService, setOpenService] = useState<number | null>(null);
-  const [openSub, setOpenSub] = useState<Record<number, number | null>>({});
-
-  const toggleService = (index: number) => {
-    setOpenService(openService === index ? null : index);
-    setOpenSub({});
-  };
-
-  const toggleSub = (serviceIndex: number, subIndex: number) => {
-    setOpenSub((prev) => ({
-      ...prev,
-      [serviceIndex]: prev[serviceIndex] === subIndex ? null : subIndex,
-    }));
-  };
+export default function MarketingAnalytics() {
+  const [selectedId, setSelectedId] = useState<number | null>(null);
+  const [openSub, setOpenSub] = useState<number | null>(null);
 
   return (
-    <section id="services" className="bg-white py-20 px-6">
-      {/* Section Header */}
-      <MotionDiv
-        initial={{ opacity: 0, y: -30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-        viewport={{ once: true }}
-        className="max-w-7xl mx-auto text-center mb-12"
-      >
-        <h2 className="text-4xl font-bold text-black mb-2">
-          Our <span className="text-red-600">Services</span>
-        </h2>
-        <p className="text-gray-500 max-w-xl mx-auto">
-          Making Construction Smoother — Here’s How
-        </p>
-        <div className="h-1 w-14 bg-red-600 mx-auto mt-4 rounded-full" />
-      </MotionDiv>
-
-      {/* Service Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto items-start">
-        {data.map((service, index) => (
-          <MotionDiv
-            key={index}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: index * 0.2 }}
-            className="bg-gray-50 border border-gray-100 p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300"
-          >
-            {/* Service Header */}
-            <button
-              onClick={() => toggleService(index)}
-              className="flex flex-col items-center w-full text-center"
+    <div className="bg-white py-12 px-6">
+      <div className="max-w-6xl mx-auto">
+        <AnimatePresence>
+          {selectedId === null ? (
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-3 gap-6"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
             >
-              <div className="bg-gray-200 text-red-600 p-4 rounded-full mb-4">
-                {service.icon}
-              </div>
-              <h3 className="text-lg font-semibold text-black mb-2">
-                {service.title}
-              </h3>
-              <p className="text-sm text-gray-600">{service.desc}</p>
-            </button>
-
-            {/* Sub-options Accordion */}
-            <AnimatePresence>
-              {openService === index ? (
-                <MotionDiv
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="mt-4 border-t border-red-300 pt-4"
+              {cardsData.map((card) => (
+                <motion.div
+                  key={card.id}
+                  onClick={() => setSelectedId(card.id)}
+                  whileHover={{ scale: 1.03 }}
+                  className="cursor-pointer rounded-2xl bg-gradient-to-br from-red-50 to-white p-6 shadow-lg border border-red-100 group"
                 >
-                  {service.subs.map((sub, subIndex) => (
-                    <div key={subIndex} className="mb-2">
-                      <button
-                        onClick={() => toggleSub(index, subIndex)}
-                        className="flex justify-between items-center w-full text-left font-medium text-red-700 hover:bg-red-50 px-3 py-2 rounded"
-                      >
-                        {sub.title}
-                        <span
-                          className={`transition-transform ${
-                            openSub[index] === subIndex
-                              ? "rotate-45"
-                              : "rotate-0"
-                          }`}
-                        >
-                          +
-                        </span>
-                      </button>
-                      <AnimatePresence>
-                        {openSub[index] === subIndex ? (
-                          <MotionUl
-                            initial={{ opacity: 0, y: -5 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -5 }}
-                            transition={{ duration: 0.2 }}
-                            className="ml-6 mt-2 list-disc text-sm text-gray-700 space-y-1"
-                          >
-                            {sub.points.map((point, i) => {
-                              const [boldText, rest] = point.split(":");
-                              return (
-                                <li key={i}>
-                                  <strong>{boldText}:</strong>
-                                  {rest && ` ${rest}`}
-                                </li>
-                              );
-                            })}
-                          </MotionUl>
-                        ) : null}
-                      </AnimatePresence>
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="p-3 bg-white rounded-full shadow-md group-hover:scale-110 transition">
+                      {card.icon}
                     </div>
-                  ))}
-                </MotionDiv>
-              ) : null}
-            </AnimatePresence>
-          </MotionDiv>
-        ))}
-      </div>
-    </section>
-  );
-};
+                    <h3 className="text-xl font-bold text-gray-800">
+                      {card.title}
+                    </h3>
+                  </div>
+                  <p className="text-gray-600">{card.definition}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+          ) : (
+            <motion.div
+              key={selectedId}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="bg-gradient-to-br from-white via-red-50 to-white rounded-2xl shadow-xl p-8 border border-red-100"
+            >
+              {cardsData
+                .filter((c) => c.id === selectedId)
+                .map((card) => (
+                  <div key={card.id}>
+                    <motion.div
+                      initial={{ y: -20, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ duration: 0.5 }}
+                      className="flex items-center gap-4 mb-4"
+                    >
+                      <div className="p-4 bg-red-100 rounded-full">
+                        {card.icon}
+                      </div>
+                      <h2 className="text-3xl font-bold text-gray-800">
+                        {card.title}
+                      </h2>
+                    </motion.div>
 
-export default ReusableServicesSection;
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.3 }}
+                      className="text-gray-600 mb-8"
+                    >
+                      {card.definition}
+                    </motion.p>
+
+                    <div className="space-y-4">
+                      {card.subPoints.map((sub, index) => (
+                        <motion.div
+                          key={index}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.5 + index * 0.2 }}
+                          className="bg-white rounded-xl border border-red-100 p-4 shadow-sm"
+                        >
+                          <div
+                            className="flex justify-between items-center cursor-pointer"
+                            onClick={() =>
+                              setOpenSub(openSub === index ? null : index)
+                            }
+                          >
+                            <span className="font-semibold text-gray-800">
+                              {sub.title}
+                            </span>
+                            {openSub === index ? (
+                              <ChevronDown className="text-red-500" />
+                            ) : (
+                              <ChevronRight className="text-red-500" />
+                            )}
+                          </div>
+
+                          <AnimatePresence>
+                            {openSub === index && (
+                              <motion.p
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0, height: 0 }}
+                                className="mt-2 text-gray-600"
+                              >
+                                {sub.description}
+                              </motion.p>
+                            )}
+                          </AnimatePresence>
+                        </motion.div>
+                      ))}
+                    </div>
+
+                    <motion.button
+                      onClick={() => {
+                        setSelectedId(null);
+                        setOpenSub(null);
+                      }}
+                      whileHover={{ scale: 1.05 }}
+                      className="mt-8 px-6 py-2 bg-red-500 text-white rounded-full shadow-md hover:bg-red-600"
+                    >
+                      Back
+                    </motion.button>
+                  </div>
+                ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+}

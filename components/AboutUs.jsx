@@ -17,8 +17,8 @@ const AboutUs = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-            Who We <span className="text-red-600">Are</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-black">
+            Who we <span className="text-red-600"> are</span>
           </h2>
           <p className="text-gray-800 text-lg mb-4 leading-relaxed">
             Pertinent Construction Services is a trusted construction services

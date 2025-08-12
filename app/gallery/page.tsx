@@ -10,7 +10,6 @@ import Preloader from "../../components/Preloader";
 const gallery = () => {
   return (
     <div className="font-sans">
-      <Preloader />
       <Header />
       <PageBanner
         title="Projects"

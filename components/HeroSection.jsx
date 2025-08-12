@@ -37,7 +37,7 @@ const HeroSection = () => {
         </p>
 
         <motion.a
-          href="#projects"
+          href="/service"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           className="mt-8 inline-block px-8 py-3 bg-red-600 hover:bg-red-700 text-white rounded-full font-medium transition duration-300"
