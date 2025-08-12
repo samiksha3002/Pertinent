@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, ReactElement } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronRight,
@@ -20,7 +20,7 @@ interface CardData {
   title: string;
   definition: string;
   subPoints: SubPoint[];
-  icon: JSX.Element;
+  icon: ReactElement;
 }
 
 const cardsData: CardData[] = [
@@ -85,9 +85,10 @@ export default function MarketingAnalytics() {
   return (
     <div className="bg-white py-12 px-6">
       <div className="max-w-6xl mx-auto">
-        <AnimatePresence>
+        <AnimatePresence mode="wait">
           {selectedId === null ? (
             <motion.div
+              key="cardsGrid"
               className="grid grid-cols-1 md:grid-cols-3 gap-6"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -99,9 +100,16 @@ export default function MarketingAnalytics() {
                   onClick={() => setSelectedId(card.id)}
                   whileHover={{ scale: 1.03 }}
                   className="cursor-pointer rounded-2xl bg-gradient-to-br from-red-50 to-white p-6 shadow-lg border border-red-100 group"
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      setSelectedId(card.id);
+                    }
+                  }}
                 >
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="p-3 bg-white rounded-full shadow-md group-hover:scale-110 transition">
+                    <div className="p-3 bg-white rounded-full shadow-md group-hover:scale-110 transition-transform duration-200">
                       {card.icon}
                     </div>
                     <h3 className="text-xl font-bold text-gray-800">
@@ -114,7 +122,7 @@ export default function MarketingAnalytics() {
             </motion.div>
           ) : (
             <motion.div
-              key={selectedId}
+              key="cardDetail"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -157,10 +165,17 @@ export default function MarketingAnalytics() {
                           className="bg-white rounded-xl border border-red-100 p-4 shadow-sm"
                         >
                           <div
-                            className="flex justify-between items-center cursor-pointer"
+                            className="flex justify-between items-center cursor-pointer select-none"
                             onClick={() =>
                               setOpenSub(openSub === index ? null : index)
                             }
+                            role="button"
+                            tabIndex={0}
+                            onKeyDown={(e) => {
+                              if (e.key === "Enter" || e.key === " ") {
+                                setOpenSub(openSub === index ? null : index);
+                              }
+                            }}
                           >
                             <span className="font-semibold text-gray-800">
                               {sub.title}
@@ -195,6 +210,7 @@ export default function MarketingAnalytics() {
                       }}
                       whileHover={{ scale: 1.05 }}
                       className="mt-8 px-6 py-2 bg-red-500 text-white rounded-full shadow-md hover:bg-red-600"
+                      type="button"
                     >
                       Back
                     </motion.button>
