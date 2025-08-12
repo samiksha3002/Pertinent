@@ -8,6 +8,10 @@ import {
 } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 
+// Fix for Framer Motion + TypeScript className issue
+const MotionDiv: any = motion.div;
+const MotionUl: any = motion.ul;
+
 const data = [
   {
     icon: <FaCalculator size={22} />,
@@ -27,17 +31,17 @@ const data = [
       {
         title: "Subcontractors",
         points: [
-          "Drywall & Framing Contractors:Wall types, layers, framing, ceilings",
-          "Painting Contractors:Wall, ceiling, door, trim, special coatings",
+          "Drywall & Framing Contractors: Wall types, layers, framing, ceilings",
+          "Painting Contractors: Wall, ceiling, door, trim, special coatings",
           "Finish Carpenters / Trim Contractors: Baseboards, casing, crown, wainscoting",
           "Flooring Contractors: Carpet, LVT, VCT, Wood, Tile, Cove base",
           "Door & Hardware Contractors: Door schedules, hardware sets, frames",
-          "Mechanical Contractors:Ducting, HVAC equipment, accessories",
+          "Mechanical Contractors: Ducting, HVAC equipment, accessories",
           "Electrical Contractors: Conduit, wiring, fixtures, panels",
           "Plumbing Contractors: Piping, fixtures, valves, fittings",
           "Fire Protection Contractors: Sprinkler systems, piping, heads",
           "Striping Contractors: Parking lot striping, signage, pavement markings",
-          "Landscaping Contractors:  Sod, planting, irrigation, edging",
+          "Landscaping Contractors: Sod, planting, irrigation, edging",
         ],
       },
     ],
@@ -113,7 +117,7 @@ const ReusableServicesSection = () => {
   return (
     <section id="services" className="bg-white py-20 px-6">
       {/* Section Header */}
-      <motion.div
+      <MotionDiv
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
@@ -127,12 +131,12 @@ const ReusableServicesSection = () => {
           Making Construction Smoother — Here’s How
         </p>
         <div className="h-1 w-14 bg-red-600 mx-auto mt-4 rounded-full" />
-      </motion.div>
+      </MotionDiv>
 
       {/* Service Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
         {data.map((service, index) => (
-          <motion.div
+          <MotionDiv
             key={index}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -157,7 +161,7 @@ const ReusableServicesSection = () => {
             {/* Sub-options Accordion */}
             <AnimatePresence>
               {openService === index && (
-                <motion.div
+                <MotionDiv
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
@@ -183,7 +187,7 @@ const ReusableServicesSection = () => {
                       </button>
                       <AnimatePresence>
                         {openSub[index] === subIndex && (
-                          <motion.ul
+                          <MotionUl
                             initial={{ opacity: 0, y: -5 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -5 }}
@@ -193,15 +197,15 @@ const ReusableServicesSection = () => {
                             {sub.points.map((point, i) => (
                               <li key={i}>{point}</li>
                             ))}
-                          </motion.ul>
+                          </MotionUl>
                         )}
                       </AnimatePresence>
                     </div>
                   ))}
-                </motion.div>
+                </MotionDiv>
               )}
             </AnimatePresence>
-          </motion.div>
+          </MotionDiv>
         ))}
       </div>
     </section>
