@@ -1,124 +1,37 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import type { HTMLMotionProps } from "framer-motion";
 
-const steps = [
-  {
-    title: "1. Project Intake",
-    content: [
-      "Receive project documents via email or cloud link.",
-      "Review scope, drawings, and specifications.",
-      "Clarify missing details or RFI-worthy issues, if any.",
-    ],
-  },
-  {
-    title: "2. Scope Alignment & Confirmation",
-    content: [
-      "Confirm project requirements and determine the level of detail needed.",
-      "Tailor the scope accordingly and finalize it with the client before execution.",
-    ],
-  },
-  {
-    title: "3. Resource Assignment",
-    content: [
-      "Assign engineers based on trade expertise and workload.",
-      "Set internal deadlines to meet or beat client timelines.",
-    ],
-  },
-  {
-    title: "4. Execution & Documentation",
-    content: [
-      "Start work using industry-standard tools based on the latest drawings.",
-      "Ensure accuracy through organized markups, clear logs, and well-structured files.",
-    ],
-  },
-  {
-    title: "5. Internal Review & QC",
-    content: [
-      "Conduct internal review to ensure scope accuracy and full scope inclusion.",
-      "Verify drawings, notes, and revisions; flag any discrepancies for client attention.",
-    ],
-  },
-  {
-    title: "6. Deliverables Preparation",
-    content: [
-      "Prepare clean and itemized Excel spreadsheets.",
-      "Include summary sheets, trade breakdowns, and alternates if needed.",
-      "Format to match client’s internal templates (if provided).",
-    ],
-  },
-  {
-    title: "7. Client Submission",
-    content: [
-      "Submit final files via email or shared platform.",
-      "Provide a brief overview.",
-      "Remain available for clarification calls or follow-up adjustments.",
-    ],
-  },
-  {
-    title: "8. Feedback & Revision (If Needed)",
-    content: [
-      "Address revisions or changes from the client’s end.",
-      "Provide updated takeoff based on revised drawings or scope updates.",
-    ],
-  },
-  {
-    title: "9. Archiving & Reporting",
-    content: [
-      "Organize all project files, markups, and communication records.",
-      "Log hours spent, scope covered, and project complexity for reporting.",
-    ],
-  },
-  {
-    title: "10. Post-Submission Support",
-    content: [
-      "Support during bid phase with last-minute quantity checks.",
-      "Assist in scope clarification for subcontractor alignment.",
-      "Help with value engineering suggestions if requested.",
-    ],
-  },
+// Cast motion.div so it works without type argument error
+const MotionDiv = motion.div as React.FC<HTMLMotionProps<"div">>;
+
+interface Step {
+  title: string;
+  details: string;
+}
+
+const steps: Step[] = [
+  { title: "Step 1", details: "This is the detail for step 1." },
+  { title: "Step 2", details: "This is the detail for step 2." },
+  { title: "Step 3", details: "This is the detail for step 3." },
+  { title: "Step 4", details: "This is the detail for step 4." },
 ];
 
 export default function ProcessFlow() {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const togglePopup = (index: number) => {
-    setActiveIndex(activeIndex === index ? null : index);
+    setOpenIndex(openIndex === index ? null : index);
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(event.target as Node)
-      ) {
-        setActiveIndex(null);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
   return (
-    <section
-      className="py-20 px-4 md:px-12 lg:px-24 bg-gradient-to-b from-gray-50 via-white to-gray-100"
-      style={{ perspective: "1200px" }}
-    >
-      <h2 className="text-4xl font-bold text-center mb-16 text-gray-900">
-        Process
-      </h2>
-
-      <div
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 max-w-7xl mx-auto"
-        ref={containerRef}
-      >
+    <div className="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl w-full">
         {steps.map((step, idx) => (
           <div key={idx} className="relative">
-            {/* Card */}
-            <motion.div<HTMLDivElement>
+            <MotionDiv
               whileHover={{
                 rotateX: 5,
                 rotateY: 5,
@@ -132,37 +45,25 @@ export default function ProcessFlow() {
               <h3 className="text-lg font-semibold text-red-600">
                 {step.title}
               </h3>
-            </motion.div>
+            </MotionDiv>
 
             {/* Popup */}
             <AnimatePresence>
-              {activeIndex === idx && (
-                <motion.div<HTMLDivElement>
-                  initial={{ opacity: 0, y: -5 }}
+              {openIndex === idx && (
+                <motion.div
+                  initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -5 }}
-                  transition={{ duration: 0.25 }}
-                  className="absolute left-1/2 -translate-x-1/2 mt-2 w-72 bg-white shadow-xl rounded-xl border border-gray-200 p-4 z-50"
-                  style={{ top: "100%" }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute top-full left-0 w-full mt-2 p-4 bg-white rounded-lg shadow-lg z-10"
                 >
-                  <ul className="list-disc list-inside text-sm text-gray-700 space-y-1">
-                    {step.content.map((item, i) => (
-                      <li key={i}>{item}</li>
-                    ))}
-                  </ul>
+                  <p className="text-gray-700">{step.details}</p>
                 </motion.div>
               )}
             </AnimatePresence>
-
-            {/* Arrow */}
-            {idx < steps.length - 1 && (
-              <div className="hidden lg:block absolute -right-8 top-8">
-                <ArrowRight className="text-red-500 w-6 h-6" />
-              </div>
-            )}
           </div>
         ))}
       </div>
-    </section>
+    </div>
   );
 }
