@@ -162,17 +162,20 @@ const OurApproach = () => {
                       boxShadow: "0 8px 25px rgba(0,0,0,0.15)",
                     }}
                   >
-                    <p className="text-sm leading-relaxed text-center">
+                    <motion.p
+                      className="text-sm leading-relaxed text-center"
+                      initial={{ scale: 1.2, opacity: 0 }}
+                      animate={isFlipped ? { scale: 1, opacity: 1 } : {}}
+                      transition={{ duration: 0.5, ease: "easeOut" }}
+                    >
                       {item.desc}
-                    </p>
+                    </motion.p>
                   </div>
                 </div>
               </motion.div>
             );
           })}
         </div>
-
-        {/* CTA */}
       </div>
     </section>
   );

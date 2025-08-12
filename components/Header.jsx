@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import { FiMenu, FiX } from "react-icons/fi";
 import clsx from "clsx";
 
-// Navigation links configuration
 const navLinks = [
   { name: "Home", to: "/", isPage: true },
   { name: "About", to: "/about", isPage: true },
@@ -20,11 +19,16 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
 
-  // Hide/show header on scroll
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+
+      // Detect scroll to change background color
+      setScrolled(currentScrollY > 50);
+
+      // Detect scroll direction to hide/show header
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
         setShowHeader(false);
       } else {
@@ -44,11 +48,16 @@ const Header = () => {
         showHeader ? "translate-y-0" : "-translate-y-full"
       )}
     >
-      <div className="bg-transparent backdrop-blur-md px-6 py-4 max-w-7xl mx-auto flex items-center justify-between">
+      <div
+        className={clsx(
+          "px-6 py-4 max-w-7xl mx-auto flex items-center justify-between transition-colors duration-300 backdrop-blur-md",
+          scrolled ? "bg-black/90" : "bg-transparent"
+        )}
+      >
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2">
           <img
-            src="/PCS Logo white.png"
+            src={scrolled ? "/PCS Logo white.png" : "/PCS Logo white.png"} // You can change to a dark logo if available
             alt="Pertinent Logo"
             className="h-14 w-auto transition duration-300 hover:scale-105"
           />
@@ -64,6 +73,8 @@ const Header = () => {
                 "text-lg font-medium transition relative group",
                 pathname === link.to
                   ? "text-red-500"
+                  : scrolled
+                  ? "text-white hover:text-red-500"
                   : "text-white hover:text-red-500"
               )}
             >

@@ -106,7 +106,7 @@ const Footer = () => {
               <FaInstagram size={14} />
             </a>
             <a
-              href="https://www.linkedin.com/company/pertinentconstructionservices" // replace with your actual LinkedIn company profile
+              href="https://www.instagram.com/pertinentconstructionservices/profilecard/?igsh=a2p1NmVnaWU1eHhx" // replace with your actual LinkedIn company profile
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 bg-gray-800 rounded-full hover:bg-red-600 transition"
