@@ -21,11 +21,15 @@ const data = [
       {
         title: "General Contractors",
         points: [
-          "Detailed quantity takeoff",
-          "Cost estimation",
-          "Bid preparation",
-          "Subcontractor pricing analysis",
-          "Value engineering suggestions",
+          "Site Work & Civil: Demolition, Excavation, Utilities, Paving, Striping, Signage, Curb, Gutter, ADA Compliance, Landscaping & Irrigation",
+          "Concrete & Structural Work: Foundations, Slabs, Tilt Walls, Rebar, Post-tension",
+          "Masonry & Metals: CMU, Brick, Stone, Structural & Misc. Steel",
+          "Wood, Plastics & Composites: Framing, Sheathing, Millwork",
+          "Thermal & Moisture Protection: Insulation, Roofing, Waterproofing",
+          "Openings: Doors, Frames, Hardware, Windows, Storefronts",
+          "Finishes: Drywall, Ceilings, Flooring, Painting, Specialties",
+          "Specialties & Equipment: Signage, Toilet Partitions, Fire Extinguishers, Signage",
+          "MEPF Systems: Mechanical – HVAC, Ducts, Equipment, Electrical – Lighting, Power, Panels, Plumbing – Pipes, Fixtures, Valves, Fire Protection – Sprinklers, Piping, Heads",
         ],
       },
       {
@@ -54,19 +58,24 @@ const data = [
       {
         title: "General Contractors",
         points: [
-          "Project scheduling",
-          "Budget tracking",
-          "Risk management",
-          "Performance reporting",
+          "Submittal Management: Comprehensive submittal review and tracking to ensure compliance with construction documents, fast-track approvals, and maintain seamless coordination across all construction trades.",
+          "Constructability Reviews: Identify conflicts, gaps, or constructability issues early to reduce change orders and rework during execution.",
+          "Drawing & Revision Management: Accurate tracking of drawing updates and revisions ensures teams build with the latest plans. All changes are communicated to the general contractor to evaluate cost and schedule impacts—supporting efficient and informed project execution.",
+          "RFI Management: Create, manage, and track RFIs to ensure timely responses, reduce project delays, and eliminate communication gaps.",
+          "Change Order Creation: Prepare and document change orders with detailed scope, pricing, and impact analysis to ensure transparency, approval tracking, and alignment with project budgets and schedules.",
+          "Material Procurement Tracking: Keep vendors, suppliers, and field teams aligned by managing delivery schedules and long-lead items.",
+          "CM Platform Management: Efficient setup and management of construction platforms like Procore, Prolog etc to track RFIs, submittals, change orders, and drawings—ensuring real-time coordination and project visibility.",
+          "Closeout Documentation: Compile and organize all required closeout materials—O&M manuals, warranties, punch lists, and certifications.",
         ],
       },
       {
         title: "Subcontractors",
         points: [
-          "Work progress monitoring",
-          "Resource allocation tracking",
-          "Scope compliance checks",
-          "Invoice preparation support",
+          "Drawing & Revision Tracking: Ensure your field crews always work with the most up-to-date drawings and avoid costly mistakes.",
+          "Submittal & RFI Support: Prepare, log, and track RFIs and submittals to keep your approvals moving and projects on track.",
+          "Change Order Documentation: Record scope changes accurately for transparent communication and timely billing.",
+          "Punch List Tracking: Ensure completion of all pending items before handover to minimize delays.",
+          "Closeout Documentation: Prepare and organize all required closeout packages for smooth turnover and final payment.",
         ],
       },
     ],
@@ -77,26 +86,31 @@ const data = [
     desc: "End-to-end support for invitation-to-bid (ITB) processes, including vendor communication, bid tracking, and document coordination — so you never miss a qualified opportunity.",
     subs: [
       {
-        title: "General Contractors",
+        title:
+          "Streamlining Bid Processes for General Contractors & Subcontractors",
         points: [
-          "Invitation to bid preparation",
-          "Scope of work definition",
-          "Bid package creation",
-          "Evaluation criteria setup",
-        ],
-      },
-      {
-        title: "Subcontractors",
-        points: [
-          "Bid response preparation",
-          "Clarification request handling",
-          "Pricing optimization",
-          "Compliance document preparation",
+          "Invitation Review:Review ITB documents to identify relevant trades, scope of work, and bid requirements.",
+          "Bid Package Organization:Structure and manage ITB documents including drawings, specs, and CSI-based scope breakdowns.",
+          "Trade Coverage & Outreach:Identify missing trades, reach out to qualified subcontractors/vendors, and maximize bid coverage",
+          " Live Bid Tracking:Maintain real-time bid trackers to monitor incoming bids, follow-ups, and coverage gaps.",
+          " Follow-ups & Communication Logs:Manage consistent communication with bidders and clients—reminders, updates, and clarifications.",
+          " Bid Comparison & Scope Sheets:Prepare detailed side-by-side bid comparisons and scope coverage matrices.",
+          " Proposal Review & Support:Assist in preparing, formatting, and submitting clear, compliant proposals with accurate inclusions and exclusions.",
+          "Organized Submission Management:Maintain all bid-related documents—proposals, RFIs, addenda, and notes—in clean, searchable formats.",
         ],
       },
     ],
   },
 ];
+
+const formatPoint = (point: string) => {
+  const [boldPart, ...rest] = point.split(":");
+  return (
+    <>
+      <strong>{boldPart}:</strong> {rest.join(":").trim()}
+    </>
+  );
+};
 
 const ReusableServicesSection = () => {
   const [openService, setOpenService] = useState<number | null>(null);
@@ -134,7 +148,7 @@ const ReusableServicesSection = () => {
       </MotionDiv>
 
       {/* Service Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto items-start">
         {data.map((service, index) => (
           <MotionDiv
             key={index}
@@ -160,7 +174,7 @@ const ReusableServicesSection = () => {
 
             {/* Sub-options Accordion */}
             <AnimatePresence>
-              {openService === index && (
+              {openService === index ? (
                 <MotionDiv
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
@@ -186,7 +200,7 @@ const ReusableServicesSection = () => {
                         </span>
                       </button>
                       <AnimatePresence>
-                        {openSub[index] === subIndex && (
+                        {openSub[index] === subIndex ? (
                           <MotionUl
                             initial={{ opacity: 0, y: -5 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -194,16 +208,22 @@ const ReusableServicesSection = () => {
                             transition={{ duration: 0.2 }}
                             className="ml-6 mt-2 list-disc text-sm text-gray-700 space-y-1"
                           >
-                            {sub.points.map((point, i) => (
-                              <li key={i}>{point}</li>
-                            ))}
+                            {sub.points.map((point, i) => {
+                              const [boldText, rest] = point.split(":");
+                              return (
+                                <li key={i}>
+                                  <strong>{boldText}:</strong>
+                                  {rest && ` ${rest}`}
+                                </li>
+                              );
+                            })}
                           </MotionUl>
-                        )}
+                        ) : null}
                       </AnimatePresence>
                     </div>
                   ))}
                 </MotionDiv>
-              )}
+              ) : null}
             </AnimatePresence>
           </MotionDiv>
         ))}
