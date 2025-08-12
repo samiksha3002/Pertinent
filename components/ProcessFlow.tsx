@@ -89,7 +89,6 @@ export default function ProcessFlow() {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
-  // Close popup when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
