@@ -118,7 +118,7 @@ export default function ProcessFlow() {
         {steps.map((step, idx) => (
           <div key={idx} className="relative">
             {/* Card */}
-            <motion.div
+            <motion.div<HTMLDivElement>
               whileHover={{
                 rotateX: 5,
                 rotateY: 5,
@@ -137,7 +137,7 @@ export default function ProcessFlow() {
             {/* Popup */}
             <AnimatePresence>
               {activeIndex === idx && (
-                <motion.div
+                <motion.div<HTMLDivElement>
                   initial={{ opacity: 0, y: -5 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -5 }}
