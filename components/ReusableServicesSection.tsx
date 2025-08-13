@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, ReactElement, KeyboardEvent } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, HTMLMotionProps } from "framer-motion";
 import {
   ChevronRight,
   ChevronDown,
@@ -77,6 +77,9 @@ const cardsData: CardData[] = [
     ],
   },
 ];
+
+// Correctly typed motion button to fix onClick error
+const MotionButton = motion.button as React.FC<HTMLMotionProps<"button">>;
 
 export default function MarketingAnalytics(): JSX.Element {
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -211,7 +214,7 @@ export default function MarketingAnalytics(): JSX.Element {
                       ))}
                     </div>
 
-                    <motion.button
+                    <MotionButton
                       onClick={() => {
                         setSelectedId(null);
                         setOpenSub(null);
@@ -221,7 +224,7 @@ export default function MarketingAnalytics(): JSX.Element {
                       type="button"
                     >
                       Back
-                    </motion.button>
+                    </MotionButton>
                   </div>
                 ))}
             </motion.div>
