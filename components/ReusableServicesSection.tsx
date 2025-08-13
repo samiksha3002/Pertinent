@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, ReactElement } from "react";
+import React, { useState, ReactElement, KeyboardEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronRight,
@@ -78,9 +78,19 @@ const cardsData: CardData[] = [
   },
 ];
 
-export default function MarketingAnalytics() {
+export default function MarketingAnalytics(): JSX.Element {
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [openSub, setOpenSub] = useState<number | null>(null);
+
+  const handleKeyDown = (
+    e: KeyboardEvent<HTMLDivElement>,
+    action: () => void
+  ) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      action();
+    }
+  };
 
   return (
     <div className="bg-white py-12 px-6">
@@ -102,11 +112,9 @@ export default function MarketingAnalytics() {
                   className="cursor-pointer rounded-2xl bg-gradient-to-br from-red-50 to-white p-6 shadow-lg border border-red-100 group"
                   role="button"
                   tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      setSelectedId(card.id);
-                    }
-                  }}
+                  onKeyDown={(e) =>
+                    handleKeyDown(e, () => setSelectedId(card.id))
+                  }
                 >
                   <div className="flex items-center gap-4 mb-4">
                     <div className="p-3 bg-white rounded-full shadow-md group-hover:scale-110 transition-transform duration-200">
@@ -171,11 +179,11 @@ export default function MarketingAnalytics() {
                             }
                             role="button"
                             tabIndex={0}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter" || e.key === " ") {
-                                setOpenSub(openSub === index ? null : index);
-                              }
-                            }}
+                            onKeyDown={(e) =>
+                              handleKeyDown(e, () =>
+                                setOpenSub(openSub === index ? null : index)
+                              )
+                            }
                           >
                             <span className="font-semibold text-gray-800">
                               {sub.title}
