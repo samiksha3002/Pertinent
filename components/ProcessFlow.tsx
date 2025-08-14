@@ -15,6 +15,9 @@ import {
   Headphones,
 } from "lucide-react";
 
+// ✅ Alias motion.div as any to avoid strict TS prop inference issues on Vercel
+const MotionDiv: any = motion.div;
+
 const steps = [
   {
     icon: FileText,
@@ -69,7 +72,8 @@ const steps = [
 ];
 
 export default function ProcessFlowVertical() {
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement | null>(null);
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start 0.2", "end 0.9"],
@@ -84,11 +88,12 @@ export default function ProcessFlowVertical() {
       </h2>
 
       <div ref={ref} className="relative max-w-5xl mx-auto">
-        {/* Static background line */}
-        <div className="absolute left-1/2 top-0 w-1 h-full bg-gray-200 transform -translate-x-1/2"></div>
-        {/* Animated red progress line */}
-        <motion.div
-          className="absolute left-1/2 top-0 w-1 bg-red-500 transform -translate-x-1/2 origin-top"
+        {/* Static background line (behind everything) */}
+        <div className="absolute left-1/2 top-0 w-1 h-full bg-gray-200 -translate-x-1/2 z-0" />
+
+        {/* Animated red progress line (middle layer) */}
+        <MotionDiv
+          className="absolute left-1/2 top-0 w-1 bg-red-500 -translate-x-1/2 origin-top z-10"
           style={{ height: lineHeight }}
         />
 
@@ -102,7 +107,7 @@ export default function ProcessFlowVertical() {
               className="relative mb-20 flex items-center w-full md:justify-between"
             >
               {/* Card with animation */}
-              <motion.div
+              <MotionDiv
                 initial={{ opacity: 0, x: isLeft ? -60 : 60 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
@@ -118,20 +123,18 @@ export default function ProcessFlowVertical() {
                 <h3 className="text-xl font-semibold text-red-500">
                   {step.title}
                 </h3>
-                <div className="w-12 border-b-2 border-red-500 my-2"></div>
+                <div className="w-12 border-b-2 border-red-500 my-2" />
                 <p className="mt-1 text-gray-200">{step.content}</p>
-              </motion.div>
+              </MotionDiv>
 
-              {/* Fixed icon position */}
-              {/* Fixed icon position */}
-              {/* Fixed icon position */}
-              <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <motion.div
+              {/* Fixed icon position (always above lines) */}
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+                <MotionDiv
                   whileHover={{ scale: 1.1 }}
                   className="flex items-center justify-center w-14 h-14 bg-gradient-to-br from-white to-red-100 border-2 border-red-500 rounded-full shadow-md"
                 >
-                  {Icon && <Icon className="text-red-500 w-7 h-7" />}
-                </motion.div>
+                  <Icon className="text-red-500 w-7 h-7" />
+                </MotionDiv>
               </div>
             </div>
           );
