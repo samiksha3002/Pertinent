@@ -1,171 +1,141 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-
-// Cast motion.div to `any` to avoid framer-motion / TypeScript typing mismatches
-const MotionDiv: any = motion.div;
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  FileText,
+  CheckCircle,
+  Users,
+  Hammer,
+  ClipboardCheck,
+  FileSpreadsheet,
+  Send,
+  RefreshCcw,
+  Archive,
+  Headphones,
+} from "lucide-react";
 
 const steps = [
   {
-    title: "1. Project Intake",
-    content: [
-      "Receive project documents via email or cloud link.",
-      "Review scope, drawings, and specifications.",
-      "Clarify missing details or RFI-worthy issues, if any.",
-    ],
+    icon: FileText,
+    title: "Project Intake",
+    content: "Receive documents, review scope, and clarify details.",
   },
   {
-    title: "2. Scope Alignment & Confirmation",
-    content: [
-      "Confirm project requirements and determine the level of detail needed.",
-      "Tailor the scope accordingly and finalize it with the client before execution.",
-    ],
+    icon: CheckCircle,
+    title: "Scope Alignment & Confirmation",
+    content: "Confirm requirements and finalize scope with client.",
   },
   {
-    title: "3. Resource Assignment",
-    content: [
-      "Assign engineers based on trade expertise and workload.",
-      "Set internal deadlines to meet or beat client timelines.",
-    ],
+    icon: Users,
+    title: "Resource Assignment",
+    content: "Assign engineers and set deadlines.",
   },
   {
-    title: "4. Execution & Documentation",
-    content: [
-      "Start work using industry-standard tools based on the latest drawings.",
-      "Ensure accuracy through organized markups, clear logs, and well-structured files.",
-    ],
+    icon: Hammer,
+    title: "Execution & Documentation",
+    content: "Work using industry tools and maintain organized files.",
   },
   {
-    title: "5. Internal Review & QC",
-    content: [
-      "Conduct internal review to ensure scope accuracy and full scope inclusion.",
-      "Verify drawings, notes, and revisions; flag any discrepancies for client attention.",
-    ],
+    icon: ClipboardCheck,
+    title: "Internal Review & QC",
+    content: "Verify accuracy and flag any discrepancies.",
   },
   {
-    title: "6. Deliverables Preparation",
-    content: [
-      "Prepare clean and itemized Excel spreadsheets.",
-      "Include summary sheets, trade breakdowns, and alternates if needed.",
-      "Format to match client’s internal templates (if provided).",
-    ],
+    icon: FileSpreadsheet,
+    title: "Deliverables Preparation",
+    content: "Prepare spreadsheets and match client templates.",
   },
   {
-    title: "7. Client Submission",
-    content: [
-      "Submit final files via email or shared platform.",
-      "Provide a brief overview.",
-      "Remain available for clarification calls or follow-up adjustments.",
-    ],
+    icon: Send,
+    title: "Client Submission",
+    content: "Submit final files and remain available for clarifications.",
   },
   {
-    title: "8. Feedback & Revision (If Needed)",
-    content: [
-      "Address revisions or changes from the client’s end.",
-      "Provide updated takeoff based on revised drawings or scope updates.",
-    ],
+    icon: RefreshCcw,
+    title: "Feedback & Revision",
+    content: "Address revisions and update takeoff if needed.",
   },
   {
-    title: "9. Archiving & Reporting",
-    content: [
-      "Organize all project files, markups, and communication records.",
-      "Log hours spent, scope covered, and project complexity for reporting.",
-    ],
+    icon: Archive,
+    title: "Archiving & Reporting",
+    content: "Organize files and log hours for reporting.",
   },
   {
-    title: "10. Post-Submission Support",
-    content: [
-      "Support during bid phase with last-minute quantity checks.",
-      "Assist in scope clarification for subcontractor alignment.",
-      "Help with value engineering suggestions if requested.",
-    ],
+    icon: Headphones,
+    title: "Post-Submission Support",
+    content: "Assist with bid phase and provide value engineering.",
   },
 ];
 
-export default function ProcessFlow() {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const containerRef = useRef<HTMLDivElement | null>(null);
+export default function ProcessFlowVertical() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start 0.2", "end 0.9"],
+  });
 
-  const togglePopup = (index: number) => {
-    setActiveIndex((prev) => (prev === index ? null : index));
-  };
-
-  // Close popup when clicking outside
-  useEffect(() => {
-    function handleClickOutside(e: MouseEvent) {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(e.target as Node)
-      ) {
-        setActiveIndex(null);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section
-      className="py-20 px-4 md:px-12 lg:px-24 bg-gradient-to-b from-gray-50 via-white to-gray-100"
-      style={{ perspective: "1200px" }}
-    >
-      <h2 className="text-4xl font-bold text-center mb-16 text-gray-900">
-        Process
+    <section className="bg-white py-20 px-4 md:px-12">
+      <h2 className="text-4xl font-bold text-center mb-16 text-black">
+        Our Process
       </h2>
 
-      <div
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 max-w-7xl mx-auto"
-        ref={containerRef}
-      >
-        {steps.map((step, idx) => (
-          <div key={idx} className="relative">
-            {/* Card */}
-            <MotionDiv
-              whileHover={{
-                rotateX: 5,
-                rotateY: 5,
-                scale: 1.03,
-                boxShadow: "0px 12px 30px rgba(0,0,0,0.15)",
-              }}
-              transition={{ type: "spring", stiffness: 200, damping: 15 }}
-              className="bg-white rounded-xl shadow-lg cursor-pointer p-6 text-center"
-              onClick={() => togglePopup(idx)}
+      <div ref={ref} className="relative max-w-5xl mx-auto">
+        {/* Static background line */}
+        <div className="absolute left-1/2 top-0 w-1 h-full bg-gray-200 transform -translate-x-1/2"></div>
+        {/* Animated red progress line */}
+        <motion.div
+          className="absolute left-1/2 top-0 w-1 bg-red-500 transform -translate-x-1/2 origin-top"
+          style={{ height: lineHeight }}
+        />
+
+        {steps.map((step, idx) => {
+          const Icon = step.icon;
+          const isLeft = idx % 2 === 0;
+
+          return (
+            <div
+              key={idx}
+              className="relative mb-20 flex items-center w-full md:justify-between"
             >
-              <h3 className="text-lg font-semibold text-red-600">
-                {step.title}
-              </h3>
-            </MotionDiv>
+              {/* Card with animation */}
+              <motion.div
+                initial={{ opacity: 0, x: isLeft ? -60 : 60 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{
+                  y: -5,
+                  boxShadow: "0px 8px 20px rgba(0,0,0,0.15)",
+                }}
+                className={`bg-black text-white p-6 rounded-xl shadow-lg w-full md:w-[45%] ${
+                  isLeft ? "" : "md:ml-auto"
+                }`}
+              >
+                <h3 className="text-xl font-semibold text-red-500">
+                  {step.title}
+                </h3>
+                <div className="w-12 border-b-2 border-red-500 my-2"></div>
+                <p className="mt-1 text-gray-200">{step.content}</p>
+              </motion.div>
 
-            {/* Popup */}
-            <AnimatePresence>
-              {activeIndex === idx && (
-                <MotionDiv
-                  initial={{ opacity: 0, y: -5 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -5 }}
-                  transition={{ duration: 0.25 }}
-                  className="absolute left-1/2 -translate-x-1/2 mt-2 w-72 bg-white shadow-xl rounded-xl border border-gray-200 p-4 z-50"
-                  style={{ top: "100%" }}
+              {/* Fixed icon position */}
+              {/* Fixed icon position */}
+              {/* Fixed icon position */}
+              <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
+                  className="flex items-center justify-center w-14 h-14 bg-gradient-to-br from-white to-red-100 border-2 border-red-500 rounded-full shadow-md"
                 >
-                  <ul className="list-disc list-inside text-sm text-gray-700 space-y-1">
-                    {step.content.map((item, i) => (
-                      <li key={i}>{item}</li>
-                    ))}
-                  </ul>
-                </MotionDiv>
-              )}
-            </AnimatePresence>
-
-            {/* Arrow */}
-            {idx < steps.length - 1 && (
-              <div className="hidden lg:block absolute -right-8 top-8">
-                <ArrowRight className="text-red-500 w-6 h-6" />
+                  {Icon && <Icon className="text-red-500 w-7 h-7" />}
+                </motion.div>
               </div>
-            )}
-          </div>
-        ))}
+            </div>
+          );
+        })}
       </div>
     </section>
   );
