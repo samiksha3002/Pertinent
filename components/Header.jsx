@@ -14,6 +14,10 @@ const navLinks = [
   { name: "Contact", to: "/contact", isPage: true },
 ];
 
+// Adjust these to EXACT hero logo size (in pixels)
+const LOGO_HEIGHT = 60; // hero logo height
+const LOGO_WIDTH = 160; // hero logo width
+
 const Header = () => {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -24,11 +28,8 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
-      // Detect scroll to change background color
       setScrolled(currentScrollY > 50);
 
-      // Detect scroll direction to hide/show header
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
         setShowHeader(false);
       } else {
@@ -57,9 +58,12 @@ const Header = () => {
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2">
           <img
-            src={scrolled ? "/PCS Logo.png" : "/PCS Logo white.png"} // You can change to a dark logo if available
+            src={scrolled ? "/PCS Logo.png" : "/PCS Logo white.png"}
             alt="Pertinent Logo"
-            className="h-14 w-auto transition duration-300 hover:scale-105"
+            width={LOGO_WIDTH}
+            height={LOGO_HEIGHT}
+            style={{ width: LOGO_WIDTH, height: LOGO_HEIGHT }}
+            className="block object-contain"
           />
         </Link>
 
@@ -74,8 +78,8 @@ const Header = () => {
                 pathname === link.to
                   ? "text-red-500"
                   : scrolled
-                  ? "text-black hover:text-red-500" // 🔹 Black when scrolled
-                  : "text-white hover:text-red-500" // 🔹 White on initial view
+                  ? "text-black hover:text-red-500"
+                  : "text-white hover:text-red-500"
               )}
             >
               {link.name}
@@ -88,7 +92,7 @@ const Header = () => {
         <div className="md:hidden z-50">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="text-white"
+            className={clsx(scrolled ? "text-black" : "text-white")}
             aria-label="Toggle Menu"
           >
             {menuOpen ? <FiX size={28} /> : <FiMenu size={28} />}

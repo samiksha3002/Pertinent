@@ -54,9 +54,8 @@ const CountriesWeServe = () => {
           </div>
           <p className="text-gray-600 mb-6 leading-relaxed">
             With global reach and local expertise, Pertinent proudly serves
-            clients in major construction hubs including the America, Australia,
-            Canada, and India — helping companies scale and deliver with
-            precision.
+            clients in major construction hubs including the Australia, Canada,
+            and India, USA — helping companies scale and deliver with precision.
           </p>
 
           <motion.ul
@@ -66,17 +65,15 @@ const CountriesWeServe = () => {
             viewport={{ once: true }}
             className="grid grid-cols-2 gap-4 text-sm text-black font-medium"
           >
-            {["America", "Australia", "Canada", "India"].map(
-              (country, index) => (
-                <motion.li
-                  key={index}
-                  variants={itemVariants}
-                  className="bg-gray-100 px-4 py-2 rounded-full border-l-4 border-red-600 shadow-sm"
-                >
-                  {country}
-                </motion.li>
-              )
-            )}
+            {["Australia", "Canada", "India", "USA"].map((country, index) => (
+              <motion.li
+                key={index}
+                variants={itemVariants}
+                className="bg-gray-100 px-4 py-2 rounded-full border-l-4 border-red-600 shadow-sm"
+              >
+                {country}
+              </motion.li>
+            ))}
           </motion.ul>
         </motion.div>
       </div>

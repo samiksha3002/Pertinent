@@ -85,8 +85,8 @@ export default function ProcessFlowVertical() {
 
   return (
     <section className="bg-white py-16 px-4 sm:px-6 md:px-12">
-      <h2 className="text-3xl sm:text-4xl font-bold text-center mb-14 text-black">
-        Our Process
+      <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-black">
+        Our <span className="text-red-600">Process</span>
       </h2>
 
       <div ref={ref} className="relative max-w-5xl mx-auto">

@@ -6,17 +6,17 @@ import { motion } from "framer-motion";
 
 const testimonials = [
   {
-    name: "Ravi Sharma",
-    role: "Real Estate Developer",
+    name: "Mohammad Rahmati",
+    role: "Estimator | Airway Mechanical Pty Ltd, Australia",
     feedback:
-      "Pertinent Construction delivered our residential tower ahead of schedule. Their engineering team is highly skilled and professional.",
+      "Working with Pertinent has been an excellent experience. Their deep knowledge of HVAC systems and precision in ESTmep modeling significantly streamlined our project planning and coordination. The clarity and accuracy of their deliverables made a real difference in reducing rework and improving overall project efficiency. I’d gladly recommend their services to anyone looking for reliable and skilled HVAC modeling support.",
     rating: 5,
   },
   {
     name: "Anjali Mehta",
-    role: "Architect",
+    role: "Flooring Supplier-Indianapolis, USA",
     feedback:
-      "They understand structure and design deeply. We collaborated on a commercial plaza — smooth process from start to finish!",
+      "We’ve been working with Pertinent for a year now, and I’m really happy with the quality of their work and timely project submissions. The best part is they flag RFIs in the drawings, which helps us evaluate pricing before the bid deadline and saves us from the last-day rush.",
     rating: 4,
   },
   {
