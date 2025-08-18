@@ -22,3 +22,21 @@ body {
 .rotate-y-180 {
   transform: rotateY(180deg);
 }
+@keyframes scroll-slow {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes scroll-fast {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-scroll-slow {
+  animation: scroll-slow 25s linear infinite;
+}
+
+.animate-scroll-fast {
+  animation: scroll-fast 15s linear infinite;
+}
+

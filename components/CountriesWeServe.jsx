@@ -54,8 +54,7 @@ const CountriesWeServe = () => {
           </div>
           <p className="text-gray-600 mb-6 leading-relaxed">
             With global reach and local expertise, Pertinent proudly serves
-            clients in major construction hubs including the Australia, Canada,
-            and India, USA — helping companies scale and deliver with precision.
+            clients in major construction hubs including the Australia, Canada,India and USA — helping companies scale and deliver with precision.
           </p>
 
           <motion.ul

@@ -1,9 +1,10 @@
 import React from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import Controls from "../../components/controls";
 import PageBanner from "../../components/PageBanner";
 import GalleryImg from "../../components/GalleryImg";
-import Preloader from "../../components/Preloader";
+
 
 // Assuming you have an OurJourney component
 
@@ -19,6 +20,8 @@ From residential to industrial structures, each image reflects our engineering p
       />
 
       <GalleryImg />
+      <Controls />
+     
       <Footer />
     </div>
   );

@@ -13,7 +13,7 @@ const testimonials = [
     rating: 5,
   },
   {
-    name: "Anjali Mehta",
+    name: "",
     role: "Flooring Supplier-Indianapolis, USA",
     feedback:
       "We’ve been working with Pertinent for a year now, and I’m really happy with the quality of their work and timely project submissions. The best part is they flag RFIs in the drawings, which helps us evaluate pricing before the bid deadline and saves us from the last-day rush.",
