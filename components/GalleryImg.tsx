@@ -2,13 +2,11 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 export default function GalleryImg() {
   const [selectedImg, setSelectedImg] = useState<string | null>(null);
 
-  // ✅ Row-wise alag images
  const row1Images = [
   "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527036/S6.8_-_ENLARGED_FRAMING_PLANS_z7acu8.jpg",
   "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527035/S6.1_-_FLOOR_FRAMING_PLAN_-SECTION_5_vnxhrv.jpg",
@@ -29,7 +27,8 @@ export default function GalleryImg() {
 
 ];
 
-const row2Images = [
+
+  const row2Images = [
   "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527023/EL1.2_-_LIGHTING_FLOOR_PLAN_-SECTION_2_-FIRST_FLOOR_mx3ekk.jpg",
   "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527023/EL1.2_-_LIGHTING_FLOOR_PLAN_-SECTION_2_-FIRST_FLOOR_mx3ekk.jpg",
   "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527022/ET1.1_-_ELECTRICAL_COMMUNICATIONS_FLOOR_PLAN_-SECTION_1_-FIRST_FLOOR_pdttho.jpg",
@@ -47,17 +46,12 @@ const row2Images = [
 
 ];
 
-
-  const safe = (src: string) => (src.includes(" ") ? encodeURI(src) : src);
-
   return (
     <section className="w-full bg-white text-black py-10 px-4 sm:px-6">
-      {/* Heading */}
       <h2 className="text-3xl sm:text-5xl font-extrabold text-center mb-10 sm:mb-12">
         Our <span className="text-red-600">Projects</span>
       </h2>
 
-      {/* Responsive Grid */}
       <div className="mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-[220px_1fr] gap-6 sm:gap-8 items-stretch">
         {/* Left slim box */}
         <div className="bg-white border border-red-500 rounded-2xl shadow-sm px-5 py-6 sm:py-8 flex items-center justify-center">
@@ -77,14 +71,12 @@ const row2Images = [
               transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
             >
               {[...row1Images, ...row2Images].map((src, i) => (
-                <Image
+                <img
                   key={`mobile-${i}`}
-                  src={safe(src)}
+                  src={src}
                   alt={`mobile-${i}`}
-                  width={280}
-                  height={200}
-                  className="rounded-xl shadow-md border border-red-100 cursor-pointer object-cover w-[70%] sm:w-[360px] h-auto"
-                  onClick={() => setSelectedImg(safe(src))}
+                  className="rounded-xl shadow-md border border-red-100 cursor-pointer w-[70%] sm:w-[360px] h-auto"
+                  onClick={() => setSelectedImg(src)}
                 />
               ))}
             </motion.div>
@@ -99,14 +91,12 @@ const row2Images = [
               transition={{ repeat: Infinity, duration: 22, ease: "linear" }}
             >
               {[...row1Images, ...row1Images].map((src, i) => (
-                <Image
+                <img
                   key={`row1-${i}`}
-                  src={safe(src)}
+                  src={src}
                   alt={`row1-${i}`}
-                  width={360}
-                  height={240}
-                  className="rounded-xl shadow-md border border-red-100 cursor-pointer object-cover"
-                  onClick={() => setSelectedImg(safe(src))}
+                  className="rounded-xl shadow-md border border-red-100 cursor-pointer object-cover w-[360px] h-[240px]"
+                  onClick={() => setSelectedImg(src)}
                 />
               ))}
             </motion.div>
@@ -118,14 +108,12 @@ const row2Images = [
               transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
             >
               {[...row2Images, ...row2Images].map((src, i) => (
-                <Image
+                <img
                   key={`row2-${i}`}
-                  src={safe(src)}
+                  src={src}
                   alt={`row2-${i}`}
-                  width={360}
-                  height={240}
-                  className="rounded-xl shadow-md border border-red-100 cursor-pointer object-cover"
-                  onClick={() => setSelectedImg(safe(src))}
+                  className="rounded-xl shadow-md border border-red-100 cursor-pointer object-cover w-[360px] h-[240px]"
+                  onClick={() => setSelectedImg(src)}
                 />
               ))}
             </motion.div>
@@ -145,13 +133,10 @@ const row2Images = [
 
           <TransformWrapper>
             <TransformComponent>
-              <Image
+              <img
                 src={selectedImg}
                 alt="Selected"
-                width={1100}
-                height={750}
                 className="rounded-xl shadow-2xl max-w-[95vw] max-h-[80vh] object-contain"
-                priority
               />
             </TransformComponent>
           </TransformWrapper>
