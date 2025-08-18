@@ -1,170 +1,87 @@
 "use client";
 
-import React, { useState } from "react";
-import {
-  FaCalculator,
-  FaClipboardList,
-  FaEnvelopeOpenText,
-  FaArrowLeft,
-  FaCheckCircle,
-} from "react-icons/fa";
-import { motion, AnimatePresence } from "framer-motion";
+import React from "react";
+import { FaCalculator, FaClipboardList, FaEnvelopeOpenText, FaCheckCircle } from "react-icons/fa";
+import { motion } from "framer-motion";
 
-// ✅ TS-safe alias to avoid className typing errors with Framer Motion in some setups
 const MDiv: any = motion.div;
 
 const data = [
   {
-    icon: <FaCalculator size={22} />,
+    icon: <FaCalculator size={28} />,
     title: "Quantity Takeoff & Estimation",
-    desc: "Accurate material takeoffs across all trades for building construction — helping contractors create competitive bids, reduce material waste, and stay within budget from the start.",
-    subs: [
-      {
-        title: "General Contractors",
-        points: [
-          "Site Work & Civil: Demolition, Excavation, Utilities, Paving, Striping, Signage, Curb, Gutter, ADA Compliance, Landscaping & Irrigation",
-          "Concrete & Structural Work: Foundations, Slabs, Tilt Walls, Rebar, Post-tension",
-          "Masonry & Metals: CMU, Brick, Stone, Structural & Misc. Steel",
-        ],
-      },
-      {
-        title: "Subcontractors",
-        points: [
-          "Drywall & Framing Contractors: Wall types, layers, framing, ceilings",
-          "Painting Contractors: Wall, ceiling, door, trim, special coatings",
-          "Finish Carpenters: Baseboards, casing, crown, wainscoting",
-        ],
-      },
-    ],
+    points: ["General Contractors", "Subcontractors"],
+    desc: "Accurate material takeoffs for building construction — helping contractors create competitive bids, reduce waste, and stay within budget."
   },
   {
-    icon: <FaClipboardList size={22} />,
+    icon: <FaClipboardList size={28} />,
     title: "Project Controls Management",
-    desc: "Streamlined management of submittals, RFIs, drawing revisions, and closeout documentation — ensuring smooth workflows, reduced delays, and full project compliance.",
-    subs: [
-      {
-        title: "General Contractors",
-        points: [
-          "Submittal Management: Comprehensive submittal review and tracking",
-          "Constructability Reviews: Identify conflicts early",
-          "Drawing & Revision Management: Accurate tracking of updates",
-        ],
-      },
-    ],
+    points: ["General Contractors", "Subcontractors"],
+    desc: "Streamlined management of submittals, RFIs, revisions, and closeout documentation — ensuring smooth workflows and full compliance."
   },
   {
-    icon: <FaEnvelopeOpenText size={22} />,
+    icon: <FaEnvelopeOpenText size={28} />,
     title: "Bid Management & ITB Support",
-    desc: "End-to-end support for invitation-to-bid (ITB) processes, including vendor communication, bid tracking, and document coordination — so you never miss a qualified opportunity.",
-    subs: [
-      {
-        title: "Streamlining Bid Processes",
-        points: [
-          "Invitation Review: Identify relevant trades & scope",
-          "Bid Package Organization: Manage drawings and specs",
-          "Trade Coverage & Outreach: Maximize bid coverage",
-        ],
-      },
-    ],
+    points: ["General Contractors", "Subcontractors"],
+    desc: "End-to-end support for invitation-to-bid (ITB) processes — vendor communication, bid tracking, and document coordination."
   },
 ];
 
-const ReusableServicesSection = () => {
-  const [selectedService, setSelectedService] = useState<number | null>(null);
-
+export default function ServicesSection() {
   return (
-    <section
-      id="services"
-      className="bg-white py-20 px-6 relative overflow-hidden"
-    >
+    <section className="py-20 px-6 bg-gray-50">
       {/* Section Header */}
-      <MDiv
-        initial={{ opacity: 0, y: -30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-        viewport={{ once: true }}
-        className="max-w-7xl mx-auto text-center mb-12"
-      >
+      <div className="text-center mb-12">
         <p className="text-gray-500 max-w-xl mx-auto">
           Making Construction Smoother — Here’s How
         </p>
-        <div className="h-1 w-14 bg-red-600 mx-auto mt-4 rounded-full" />
-      </MDiv>
+        <div className="h-1 w-16 bg-red-600 mx-auto mt-4 rounded-full" />
+      </div>
 
-      {/* Card Grid OR Detail View */}
-      <AnimatePresence mode="wait">
-        {selectedService === null ? (
+      {/* Stacked Cards */}
+      <div className="flex flex-col gap-16 max-w-5xl mx-auto">
+        {data.map((service, idx) => (
           <MDiv
-            key="grid"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto items-start text-center"
+            key={idx}
+            className="relative bg-white rounded-xl shadow-xl p-12 cursor-pointer hover:scale-105 hover:shadow-2xl transition-all duration-500 overflow-hidden min-h-[500px] lg:min-h-[550px]"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: idx * 0.3 }}
           >
-            {data.map((service, index) => (
-              <MDiv
-                key={index}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="bg-gray-50 border border-gray-100 p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer"
-                onClick={() => setSelectedService(index)}
-              >
-                <div className="bg-gray-200 text-red-600 p-4 rounded-full mb-4 inline-block">
-                  {service.icon}
-                </div>
-                <h3 className="text-lg font-semibold text-black mb-2">
-                  {service.title}
-                </h3>
-                <p className="text-sm text-gray-600">{service.desc}</p>
-              </MDiv>
-            ))}
-          </MDiv>
-        ) : (
-          <MDiv
-            key="detail"
-            initial={{ x: "100%", opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: "-100%", opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className="bg-black text-white rounded-xl shadow-xl p-8 max-w-5xl mx-auto relative"
-          >
-            {/* Back Button */}
-            <button
-              onClick={() => setSelectedService(null)}
-              className="absolute top-4 left-4 flex items-center text-white hover:text-red-500 transition-colors"
-            >
-              <FaArrowLeft className="mr-2" /> Back
-            </button>
+            {/* Icon */}
+            <div className="bg-red-100 text-red-600 p-5 r rounded-full w-20 h-20 flex items-center justify-center mb-6">
+              {service.icon}
+            </div>
 
             {/* Title */}
-            <h2 className="text-3xl font-bold text-red-500 mb-4 border-b border-red-500 pb-2">
-              {data[selectedService].title}
-            </h2>
-            <p className="mb-6 text-gray-200">{data[selectedService].desc}</p>
+            <h3 className="text-3xl font-bold text-black mb-4">{service.title}</h3>
 
-            {/* Sub Sections */}
-            {data[selectedService].subs.map((sub, i) => (
-              <div key={i} className="mb-6">
-                <h3 className="text-xl font-semibold text-white mb-3 underline underline-offset-4 decoration-red-500">
-                  {sub.title}
-                </h3>
-                <ul className="space-y-2">
-                  {sub.points.map((point, idx) => (
-                    <li key={idx} className="flex items-start space-x-2">
-                      <FaCheckCircle className="text-red-500 mt-1" />
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            {/* Description */}
+            <p className="text-gray-600 mb-8">{service.desc}</p>
+
+            {/* Sub Points Side by Side */}
+            <div className="flex flex-col md:flex-row gap-6">
+              {service.points.map((point, i) => (
+                <MDiv
+                  key={i}
+                  className="flex-1 bg-gray-50 border border-gray-200 rounded-xl p-6 flex items-center justify-start gap-3 hover:bg-red-50 hover:scale-105 transition-all cursor-pointer shadow-sm"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.2 }}
+                >
+                  <FaCheckCircle className="text-red-500 w-6 h-6 flex-shrink-0" />
+                  <span className="font-semibold text-gray-800 text-lg">{point}</span>
+                </MDiv>
+              ))}
+            </div>
+
+            {/* Decorative background shape */}
+            <div className="absolute top-0 right-0 w-36 h-36 bg-red-100 rounded-full -translate-x-20 -translate-y-20 opacity-30 pointer-events-none"></div>
           </MDiv>
-        )}
-      </AnimatePresence>
+        ))}
+      </div>
     </section>
   );
-};
-
-export default ReusableServicesSection;
+}

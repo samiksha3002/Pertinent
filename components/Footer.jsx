@@ -95,14 +95,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="p-2 bg-gray-800 rounded-full hover:bg-red-600 transition"
             >
-              <FaFacebookF size={14} />
-            </a>
-            <a
-              href="https://www.instagram.com/yourprofile" // replace with your actual Instagram handle
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 bg-gray-800 rounded-full hover:bg-red-600 transition"
-            >
+              
               <FaInstagram size={14} />
             </a>
             <a
