@@ -10,7 +10,7 @@ import ProjectStats from "../../components/ProjectStats";
 import LandscapeImageSection from "../../components/LandscapeImageSection";
 import Preloader from "../../components/Preloader";
 import CountriesWeserve from "../../components/CountriesWeServe";
-import OurApproach from "../../components/OurApproach";
+
 import PertinentAdvantages from "../../components/PertinentAdvantages";
 
 const Home = () => {
@@ -22,7 +22,7 @@ const Home = () => {
       <AboutUs />
       <ServiceSection />
       <whyChooseUs />
-      <OurApproach />
+    
 
       {/* Assuming PertinentMethods is a component that lists methods */}
       <PertinentAdvantages />
