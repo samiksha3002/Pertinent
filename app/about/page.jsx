@@ -3,8 +3,9 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import PageBanner from "../../components/PageBanner";
 import OurJourney from "../../components/OurJourney";
+import OurApproach from "../../components/OurApproach"
 import MissionVisionValues from "../../components/MissionVisionValues";
-import Preloader from "../../components/Preloader";
+
 
 const about = () => {
   return (
@@ -16,6 +17,7 @@ const about = () => {
         backgroundImage="/pertinent5.jpg" // ✅ Image in public folder
       />
       <OurJourney />
+      <OurApproach />
       <MissionVisionValues />
       <Footer />
     </div>

@@ -8,18 +8,45 @@ import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 export default function GalleryImg() {
   const [selectedImg, setSelectedImg] = useState<string | null>(null);
 
-  // ✅ Images must exist in /public. Add/remove as needed.
-  const images = [
-    "/A1.3 - FLOOR PLAN -SECTION 1 -FIRST FLOOR.jpg",
-    "/A2.3 - REFLECTED CEILING PLAN -SECTION 1.jpg",
-    "/A3.1 - ALUMINUM FRAME DOOR SCHEDULE & STOREFRONT CONFIGURATIONS.jpg",
-    "/A4.3 - FINISH PLAN -SECTION 3.jpg",
-    "/A5.1 - EXTERIOR ELEVATIONS.jpg",
-    "/C1.07 - PHASE 1 DEMOLITION PLAN - SECTION _C_.jpg",
-    "/C1.11 - PHASE 1 SITE PLAN -SECTION _C_.jpg",
-    "/C1.26 - PHASE 1 STORM DRAIN PLAN - SECTION _C_.jpg",
-    "/img8.jpg",
-  ];
+  // ✅ Row-wise alag images
+ const row1Images = [
+  "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527036/S6.8_-_ENLARGED_FRAMING_PLANS_z7acu8.jpg",
+  "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527035/S6.1_-_FLOOR_FRAMING_PLAN_-SECTION_5_vnxhrv.jpg",
+  "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527034/S2.5_-_FOUNDATION_PLAN_-SECTION_1_fj65bt.jpg",
+  "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527034/PS1.1_-_PLUMBING_SEVEN_HILLS_SITE_PLAN_tovjfu.jpg",
+  "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527025/PL5.1_-_PLUMBING_KITCHEN_PLAN_y1hqgd.jpg",
+  "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527025/PL1.1_-_PLUMBING_FLOOR_PLAN_-SECTION_1_-FIRST_FLOOR_cmunxz.jpg",
+  "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527024/MH6.1_-_MECHANICAL_ROOF_PLAN_yvw1zp.jpg",
+  "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527024/C1.38_-_PHASE_1_EROSION_CONTROL_PLAN_mu4xeq.jpg",
+  "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527024/MH5.1_-_MECHANICAL_KITCHEN_FLOOR_PLAN_ormvma.jpg",
+  "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527023/MH1.1_-_MECHANICAL_FLOOR_PLAN_-SECTION_1_-FIRST_FLOOR_mnoxfk.jpg",
+  "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527023/EL1.2_-_LIGHTING_FLOOR_PLAN_-SECTION_2_-FIRST_FLOOR_mx3ekk.jpg",
+  "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527023/G4.1_-_CODE_ANALYSIS_TORNADO_SHELTER_niabu0.jpg",
+  "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527023/G4.1_-_CODE_ANALYSIS_TORNADO_SHELTER_niabu0.jpg",
+  "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527014/A7-1_-_ROOF_PLAN_ejqyz8.jpg",
+  "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527014/A3.1_-_ALUMINUM_FRAME_DOOR_SCHEDULE_STOREFRONT_CONFIGURATIONS_vu0vzj.jpg",
+  "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527013/A4.3_-_FINISH_PLAN_-SECTION_3_khuowd.jpg",
+
+];
+
+const row2Images = [
+  "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527023/EL1.2_-_LIGHTING_FLOOR_PLAN_-SECTION_2_-FIRST_FLOOR_mx3ekk.jpg",
+  "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527023/EL1.2_-_LIGHTING_FLOOR_PLAN_-SECTION_2_-FIRST_FLOOR_mx3ekk.jpg",
+  "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527022/ET1.1_-_ELECTRICAL_COMMUNICATIONS_FLOOR_PLAN_-SECTION_1_-FIRST_FLOOR_pdttho.jpg",
+  "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527022/C1.71_-_PHASE_2_OFFSITE_SITE_DCP_PAVING_kmfiqt.jpg",
+  "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527021/C1.70_-_OFFSITE_DEMOLITION_PLAN_NOTES_qgfwju.jpg",
+  "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527020/A1.3_-_FLOOR_PLAN_-SECTION_1_-FIRST_FLOOR_uo1vsn.jpg",
+  "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527019/C1.26_-_PHASE_1_STORM_DRAIN_PLAN_-_SECTION_C_u1zjc6.jpg",
+  "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527019/C1.27_-_PHASE_1_STORM_DRAIN_INSETS_qtwjx9.jpg",
+  "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527019/C1.31_-_PHASE_1_WATER_SANITARY_SEWER_PLAN_-_SECTION_C_nbu8o4.jpg",
+  "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527019/C1.11_-_PHASE_1_SITE_PLAN_-SECTION_C_k48lq3.jpg",
+  "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527015/A5.1_-_EXTERIOR_ELEVATIONS_nxt00k.jpg",
+  "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527014/C1.07_-_PHASE_1_DEMOLITION_PLAN_-_SECTION_C_t8hkfw.jpg",
+  "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527014/C1.07_-_PHASE_1_DEMOLITION_PLAN_-_SECTION_C_t8hkfw.jpg",
+  "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527014/A2.3_-_REFLECTED_CEILING_PLAN_-SECTION_1_r3xw2j.jpg",
+
+];
+
 
   const safe = (src: string) => (src.includes(" ") ? encodeURI(src) : src);
 
@@ -47,9 +74,9 @@ export default function GalleryImg() {
             <motion.div
               style={{ display: "flex", gap: "1rem" }}
               animate={{ x: ["0%", "-50%"] }}
-              transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
+              transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
             >
-              {[...images, ...images].map((src, i) => (
+              {[...row1Images, ...row2Images].map((src, i) => (
                 <Image
                   key={`mobile-${i}`}
                   src={safe(src)}
@@ -71,7 +98,7 @@ export default function GalleryImg() {
               animate={{ x: ["0%", "-50%"] }}
               transition={{ repeat: Infinity, duration: 22, ease: "linear" }}
             >
-              {[...images, ...images].map((src, i) => (
+              {[...row1Images, ...row1Images].map((src, i) => (
                 <Image
                   key={`row1-${i}`}
                   src={safe(src)}
@@ -90,7 +117,7 @@ export default function GalleryImg() {
               animate={{ x: ["0%", "-50%"] }}
               transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
             >
-              {[...images, ...images].map((src, i) => (
+              {[...row2Images, ...row2Images].map((src, i) => (
                 <Image
                   key={`row2-${i}`}
                   src={safe(src)}

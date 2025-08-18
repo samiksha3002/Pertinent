@@ -8,21 +8,33 @@ import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 export default function Controls() {
   const [selectedImg, setSelectedImg] = useState<string | null>(null);
 
-  // ✅ Images (public folder)
+  // ✅ Cloudinary Images (direct URLs)
   const images = [
-    { src: "/A1.3 - FLOOR PLAN -SECTION 1 -FIRST FLOOR.jpg", name: "Floor Plan" },
-    { src: "/A2.3 - REFLECTED CEILING PLAN -SECTION 1.jpg", name: "Ceiling Plan" },
-    { src: "/A3.1 - ALUMINUM FRAME DOOR SCHEDULE & STOREFRONT CONFIGURATIONS.jpg", name: "Door Schedule" },
-    { src: "/A4.3 - FINISH PLAN -SECTION 3.jpg", name: "Finish Plan" },
-    { src: "/A5.1 - EXTERIOR ELEVATIONS.jpg", name: "Elevations" },
-    { src: "/C1.07 - PHASE 1 DEMOLITION PLAN - SECTION _C_.jpg", name: "Demolition Plan" },
-    { src: "/C1.11 - PHASE 1 SITE PLAN -SECTION _C_.jpg", name: "Site Plan" },
-    { src: "/C1.26 - PHASE 1 STORM DRAIN PLAN - SECTION _C_.jpg", name: "Storm Drain Plan" },
-    { src: "/img8.jpg", name: "Extra Project" },
+    {
+      src: "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527813/RFI_MANAGEMENT_PROCESS_l08yiv.png",
+      name: "RFI Management Process",
+    },
+    {
+      src: "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527813/MATERIAL_PROCUREMENT_PROCESS_vzzvin.png",
+      name: "Material Procurement Process",
+    },
+    {
+      src: "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527813/SUBMITTAL_MANAGEMENT_PROCESS_prmiuj.png",
+      name: "Submittal Management process",
+    },
+    {
+      src: "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527812/CHANGE_MANAGEMENT_PROCESS_pgkoa3.png",
+      name: "Change Management Process",
+    },
+    {
+      src: "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527812/CLOSEOUT_MANAGEMENT_PROCESS_uygrcy.png",
+      name: "Closeout Management process",
+    },
+    {
+      src: "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527812/BUYOUT_ASSISTANCE_PROCESS_cjeaqj.png",
+      name: "Buyout Assistance Process",
+    },
   ];
-
-  // helper: encode file names with spaces
-  const safe = (src: string) => (src.includes(" ") ? encodeURI(src) : src);
 
   return (
     <section className="w-full bg-white text-black py-14 px-6">
@@ -35,13 +47,12 @@ export default function Controls() {
           </h3>
         </div>
 
-        {/* Right: Single Row with Images + Names */}
+        {/* Right: Scrolling Row */}
         <div className="overflow-hidden">
           <motion.div
-            // ⭐ No className here to avoid the TS error
             style={{
               display: "flex",
-              gap: "2.5rem", // same as Tailwind gap-10
+              gap: "2.5rem", // Tailwind gap-10
               willChange: "transform",
             }}
             animate={{ x: ["0%", "-50%"] }}
@@ -51,10 +62,10 @@ export default function Controls() {
               <div
                 key={i}
                 className="flex flex-col items-center min-w-[360px] cursor-pointer"
-                onClick={() => setSelectedImg(safe(img.src))}
+                onClick={() => setSelectedImg(img.src)}
               >
                 <Image
-                  src={safe(img.src)}
+                  src={img.src}
                   alt={img.name}
                   width={360}
                   height={260}
