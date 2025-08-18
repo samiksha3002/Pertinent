@@ -38,26 +38,27 @@ export default function Controls() {
         {/* Right: Single Row with Images + Names */}
         <div className="overflow-hidden">
           <motion.div
-            className="flex gap-10"
+            // ⭐ No className here to avoid the TS error
+            style={{
+              display: "flex",
+              gap: "2.5rem", // same as Tailwind gap-10
+              willChange: "transform",
+            }}
             animate={{ x: ["0%", "-50%"] }}
             transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
           >
             {[...images, ...images].map((img, i) => (
               <div
                 key={i}
-                className="flex flex-col items-center min-w-[340px] cursor-pointer"
+                className="flex flex-col items-center min-w-[360px] cursor-pointer"
                 onClick={() => setSelectedImg(safe(img.src))}
               >
                 <Image
                   src={safe(img.src)}
                   alt={img.name}
-                  width={340}
-                  height={240}
+                  width={360}
+                  height={260}
                   className="rounded-xl shadow-md border border-red-100 object-cover"
-                  onError={(e) =>
-                    ((e.currentTarget as HTMLImageElement).style.display =
-                      "none")
-                  }
                 />
                 <p className="mt-3 text-lg font-semibold text-center">
                   {img.name}
@@ -85,7 +86,7 @@ export default function Controls() {
                 alt="Selected"
                 width={1100}
                 height={750}
-                className="rounded-xl shadow-2xl"
+                className="rounded-xl shadow-2xl max-w-[95vw] max-h-[80vh] object-contain"
                 priority
               />
             </TransformComponent>

@@ -43,29 +43,31 @@ export default function GalleryImg() {
         {/* Right scrolling gallery */}
         <div className="overflow-hidden flex flex-col gap-6">
           {/* Mobile: single row */}
-          <motion.div
-            className="flex gap-4 sm:hidden"
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
-          >
-            {[...images, ...images].map((src, i) => (
-              <Image
-                key={`mobile-${i}`}
-                src={safe(src)}
-                alt={`mobile-${i}`}
-                width={280}
-                height={200}
-                className="rounded-xl shadow-md border border-red-100 cursor-pointer object-cover w-[70%] sm:w-[360px] h-auto"
-                onClick={() => setSelectedImg(safe(src))}
-              />
-            ))}
-          </motion.div>
+          <div className="sm:hidden">
+            <motion.div
+              style={{ display: "flex", gap: "1rem" }}
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
+            >
+              {[...images, ...images].map((src, i) => (
+                <Image
+                  key={`mobile-${i}`}
+                  src={safe(src)}
+                  alt={`mobile-${i}`}
+                  width={280}
+                  height={200}
+                  className="rounded-xl shadow-md border border-red-100 cursor-pointer object-cover w-[70%] sm:w-[360px] h-auto"
+                  onClick={() => setSelectedImg(safe(src))}
+                />
+              ))}
+            </motion.div>
+          </div>
 
           {/* Desktop: two rows */}
           <div className="hidden sm:flex flex-col gap-6">
             {/* Row 1 */}
             <motion.div
-              className="flex gap-6"
+              style={{ display: "flex", gap: "1.5rem" }}
               animate={{ x: ["0%", "-50%"] }}
               transition={{ repeat: Infinity, duration: 22, ease: "linear" }}
             >
@@ -84,7 +86,7 @@ export default function GalleryImg() {
 
             {/* Row 2 */}
             <motion.div
-              className="flex gap-6"
+              style={{ display: "flex", gap: "1.5rem" }}
               animate={{ x: ["0%", "-50%"] }}
               transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
             >
