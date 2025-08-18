@@ -21,81 +21,92 @@ export default function GalleryImg() {
     "/img8.jpg",
   ];
 
-  // helper: safely handle file names with spaces
   const safe = (src: string) => (src.includes(" ") ? encodeURI(src) : src);
 
   return (
-    <section className="w-full bg-white text-black py-14 px-6">
+    <section className="w-full bg-white text-black py-10 px-4 sm:px-6">
       {/* Heading */}
-      <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-12">
+      <h2 className="text-3xl sm:text-5xl font-extrabold text-center mb-10 sm:mb-12">
         Our <span className="text-red-600">Projects</span>
       </h2>
 
-      {/* Grid keeps left+right the same height */}
-      <div className="mx-auto max-w-7xl grid grid-cols-[220px_1fr] gap-8 items-stretch">
+      {/* Responsive Grid */}
+      <div className="mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-[220px_1fr] gap-6 sm:gap-8 items-stretch">
         {/* Left slim box */}
-        <div className="bg-white border border-red-500 rounded-2xl shadow-sm px-5 py-8 flex items-center justify-center">
-          <h3 className="text-2xl md:text-3xl font-bold text-center leading-snug">
+        <div className="bg-white border border-red-500 rounded-2xl shadow-sm px-5 py-6 sm:py-8 flex items-center justify-center">
+          <h3 className="text-xl sm:text-3xl font-bold text-center leading-snug">
             Quantity Take Off <br />
             <span className="text-red-600">&nbsp;Estimation</span>
           </h3>
         </div>
 
-        {/* Right: two rows, both move LEFT with different speeds */}
+        {/* Right scrolling gallery */}
         <div className="overflow-hidden flex flex-col gap-6">
-          {/* Row 1 — faster */}
-          {/* comment must be inside braces in TSX to avoid red underline */}
-          {/* Row 1 - Faster, Left Direction */}
+          {/* Mobile: single row */}
           <motion.div
-            className="flex gap-6"
+            className="flex gap-4 sm:hidden"
             animate={{ x: ["0%", "-50%"] }}
-            transition={{ repeat: Infinity, duration: 22, ease: "linear" }}
+            transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
           >
             {[...images, ...images].map((src, i) => (
               <Image
-                key={`row1-${i}`}
+                key={`mobile-${i}`}
                 src={safe(src)}
-                alt={`row1-${i}`}
-                width={360}
-                height={240}
-                className="rounded-xl shadow-md border border-red-100 cursor-pointer object-cover"
+                alt={`mobile-${i}`}
+                width={280}
+                height={200}
+                className="rounded-xl shadow-md border border-red-100 cursor-pointer object-cover w-[70%] sm:w-[360px] h-auto"
                 onClick={() => setSelectedImg(safe(src))}
-                onError={(e) => {
-                  // hide broken images gracefully if a file is missing
-                  (e.currentTarget as HTMLImageElement).style.display = "none";
-                }}
               />
             ))}
           </motion.div>
 
-          {/* Row 2 — slower (same LEFT direction) */}
-          {/* Row 2 - Slower, Left Direction */}
-          <motion.div
-            className="flex gap-6"
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
-          >
-            {[...images, ...images].map((src, i) => (
-              <Image
-                key={`row2-${i}`}
-                src={safe(src)}
-                alt={`row2-${i}`}
-                width={360}
-                height={240}
-                className="rounded-xl shadow-md border border-red-100 cursor-pointer object-cover"
-                onClick={() => setSelectedImg(safe(src))}
-                onError={(e) => {
-                  (e.currentTarget as HTMLImageElement).style.display = "none";
-                }}
-              />
-            ))}
-          </motion.div>
+          {/* Desktop: two rows */}
+          <div className="hidden sm:flex flex-col gap-6">
+            {/* Row 1 */}
+            <motion.div
+              className="flex gap-6"
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{ repeat: Infinity, duration: 22, ease: "linear" }}
+            >
+              {[...images, ...images].map((src, i) => (
+                <Image
+                  key={`row1-${i}`}
+                  src={safe(src)}
+                  alt={`row1-${i}`}
+                  width={360}
+                  height={240}
+                  className="rounded-xl shadow-md border border-red-100 cursor-pointer object-cover"
+                  onClick={() => setSelectedImg(safe(src))}
+                />
+              ))}
+            </motion.div>
+
+            {/* Row 2 */}
+            <motion.div
+              className="flex gap-6"
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
+            >
+              {[...images, ...images].map((src, i) => (
+                <Image
+                  key={`row2-${i}`}
+                  src={safe(src)}
+                  alt={`row2-${i}`}
+                  width={360}
+                  height={240}
+                  className="rounded-xl shadow-md border border-red-100 cursor-pointer object-cover"
+                  onClick={() => setSelectedImg(safe(src))}
+                />
+              ))}
+            </motion.div>
+          </div>
         </div>
       </div>
 
       {/* Zoomable modal */}
       {selectedImg && (
-        <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center">
+        <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center px-3">
           <button
             className="absolute top-6 right-6 bg-red-600 hover:bg-red-700 text-white rounded-full px-4 py-1 text-xl"
             onClick={() => setSelectedImg(null)}
@@ -110,7 +121,7 @@ export default function GalleryImg() {
                 alt="Selected"
                 width={1100}
                 height={750}
-                className="rounded-xl shadow-2xl"
+                className="rounded-xl shadow-2xl max-w-[95vw] max-h-[80vh] object-contain"
                 priority
               />
             </TransformComponent>
