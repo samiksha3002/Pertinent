@@ -78,7 +78,11 @@ const QuantityPage: React.FC = () => {
         {/* Branches */}
         <div className="flex flex-col md:flex-row justify-center items-start gap-12 md:gap-20 mt-6 md:mt-12 w-full">
           <InfoCard title="General Contractor" items={generalContractorItems} />
-          <InfoCard title="Subcontractor" items={subcontractorItems} delay={0.2} />
+          <InfoCard
+            title="Subcontractor"
+            items={subcontractorItems}
+            delay={0.2}
+          />
         </div>
       </div>
     </section>
