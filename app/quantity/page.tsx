@@ -9,16 +9,18 @@ import ServiceDetails from "../../components/ServiceDetails";
 export default function Quantity() {
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Header */}
+      {/* ✅ Header */}
       <Header />
-       <PageBanner
+
+      {/* ✅ Page Banner */}
+      <PageBanner
         title="Quantity Takeoff and Estimation"
-        description="Explore our gallery to witness the craftsmanship and quality behind every project we’ve delivered.
-From residential to industrial structures, each image reflects our engineering precision and commitment to excellence."
-        backgroundImage="/pertinent9.jpg" // ✅ Image in public folder
+        description="Explore our gallery to witness the craftsmanship and quality behind every project we’ve delivered. From residential to industrial structures, each image reflects our engineering precision and commitment to excellence."
+        backgroundImage="/pertinent9.jpg" // Make sure this file exists in /public
       />
 
-       <ServiceDetails
+      {/* ✅ Service Details */}
+      <ServiceDetails
         serviceTitle="Quantity Takeoff & Estimation"
         serviceDesc="We help contractors with accurate material takeoffs to create competitive bids, reduce waste, and optimize costs."
         generalPoints={[
@@ -33,7 +35,7 @@ From residential to industrial structures, each image reflects our engineering p
         ]}
       />
 
-      {/* Footer */}
+      {/* ✅ Footer */}
       <Footer />
     </div>
   );
