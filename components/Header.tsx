@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FiMenu, FiX } from "react-icons/fi";
-import { ChevronDown } from "lucide-react"; // dropdown arrow
+import { ChevronDown } from "lucide-react";
 import clsx from "clsx";
 
 const navLinks = [
@@ -12,8 +12,8 @@ const navLinks = [
   { name: "About", to: "/about", isPage: true },
   {
     name: "Services",
-    to: "#",
-    isPage: false,
+    to: "/service",
+    isPage: true,
     subLinks: [
       { name: "Quantity Takeoff & Estimation", to: "/quantity" },
       { name: "Project Controls Management", to: "/Estimatio" },
@@ -24,7 +24,6 @@ const navLinks = [
   { name: "Contact", to: "/contact", isPage: true },
 ];
 
-// Adjust these to EXACT hero logo size (in pixels)
 const LOGO_HEIGHT = 60;
 const LOGO_WIDTH = 160;
 
@@ -34,7 +33,8 @@ const Header = () => {
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [scrolled, setScrolled] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false); // dropdown state
+ const [openDropdown, setOpenDropdown] = useState(null);
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -85,21 +85,25 @@ const Header = () => {
               <div
                 key={link.name}
                 className="relative group"
-                onMouseEnter={() => setServicesOpen(true)}
-                onMouseLeave={() => setServicesOpen(false)}
+                onMouseEnter={() => setOpenDropdown(link.name)}
+                onMouseLeave={() => setOpenDropdown(null)}
               >
-                <button
+                {/* Main Services link */}
+                <Link
+                  href={link.to}
                   className={clsx(
                     "flex items-center text-lg font-medium transition relative group",
-                    scrolled ? "text-black hover:text-red-500" : "text-white hover:text-red-500"
+                    scrolled
+                      ? "text-black hover:text-red-500"
+                      : "text-white hover:text-red-500"
                   )}
                 >
                   {link.name}
                   <ChevronDown size={18} className="ml-1" />
-                </button>
+                </Link>
 
                 {/* Dropdown Menu */}
-                {servicesOpen && (
+                {openDropdown === link.name && (
                   <div className="absolute left-0 mt-2 w-64 bg-white shadow-lg rounded-lg py-3 z-50">
                     {link.subLinks.map((sublink) => (
                       <Link
@@ -151,14 +155,27 @@ const Header = () => {
           {navLinks.map((link) =>
             link.subLinks ? (
               <div key={link.name} className="flex flex-col">
-                <button
-                  onClick={() => setServicesOpen(!servicesOpen)}
-                  className="flex justify-between items-center text-white hover:text-red-500"
-                >
-                  {link.name}
-                  <ChevronDown size={18} />
-                </button>
-                {servicesOpen && (
+                {/* Services as link + dropdown toggle */}
+                <div className="flex justify-between items-center">
+                  <Link
+                    href={link.to}
+                    onClick={() => setMenuOpen(false)}
+                    className="text-white hover:text-red-500"
+                  >
+                    {link.name}
+                  </Link>
+                  <button
+                    onClick={() =>
+                      setOpenDropdown(openDropdown === link.name ? null : link.name)
+                    }
+                    className="text-white ml-2"
+                  >
+                    <ChevronDown size={18} />
+                  </button>
+                </div>
+
+                {/* Dropdown items */}
+                {openDropdown === link.name && (
                   <div className="ml-4 mt-2 flex flex-col gap-2">
                     {link.subLinks.map((sublink) => (
                       <Link

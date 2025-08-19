@@ -8,7 +8,6 @@ import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 export default function Controls() {
   const [selectedImg, setSelectedImg] = useState<string | null>(null);
 
-  // ✅ Cloudinary Images (direct URLs)
   const images = [
     {
       src: "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527813/RFI_MANAGEMENT_PROCESS_l08yiv.png",
@@ -20,7 +19,7 @@ export default function Controls() {
     },
     {
       src: "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527813/SUBMITTAL_MANAGEMENT_PROCESS_prmiuj.png",
-      name: "Submittal Management process",
+      name: "Submittal Management Process",
     },
     {
       src: "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527812/CHANGE_MANAGEMENT_PROCESS_pgkoa3.png",
@@ -28,7 +27,7 @@ export default function Controls() {
     },
     {
       src: "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527812/CLOSEOUT_MANAGEMENT_PROCESS_uygrcy.png",
-      name: "Closeout Management process",
+      name: "Closeout Management Process",
     },
     {
       src: "https://res.cloudinary.com/dpzomvltp/image/upload/v1755527812/BUYOUT_ASSISTANCE_PROCESS_cjeaqj.png",
@@ -37,11 +36,11 @@ export default function Controls() {
   ];
 
   return (
-    <section className="w-full bg-white text-black py-14 px-6">
-      <div className="mx-auto max-w-7xl grid grid-cols-[260px_1fr] gap-8 items-stretch">
+    <section className="w-full bg-white text-black py-10 px-4 sm:px-6">
+      <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-[260px_1fr] gap-6 md:gap-8 items-stretch">
         {/* Left Box */}
-        <div className="bg-white border border-red-500 rounded-2xl shadow-sm px-6 py-10 flex items-center justify-center">
-          <h3 className="text-2xl md:text-3xl font-bold text-center leading-snug">
+        <div className="bg-white border border-red-500 rounded-2xl shadow-sm px-6 py-8 flex items-center justify-center">
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-center leading-snug">
             Project Controls <br />
             <span className="text-red-600">Management</span>
           </h3>
@@ -52,7 +51,7 @@ export default function Controls() {
           <motion.div
             style={{
               display: "flex",
-              gap: "2.5rem", // Tailwind gap-10
+              gap: "1.5rem", // smaller gap for mobile
               willChange: "transform",
             }}
             animate={{ x: ["0%", "-50%"] }}
@@ -61,7 +60,7 @@ export default function Controls() {
             {[...images, ...images].map((img, i) => (
               <div
                 key={i}
-                className="flex flex-col items-center min-w-[360px] cursor-pointer"
+                className="flex flex-col items-center min-w-[250px] sm:min-w-[300px] md:min-w-[360px] cursor-pointer"
                 onClick={() => setSelectedImg(img.src)}
               >
                 <Image
@@ -69,9 +68,9 @@ export default function Controls() {
                   alt={img.name}
                   width={360}
                   height={260}
-                  className="rounded-xl shadow-md border border-red-100 object-cover"
+                  className="rounded-lg sm:rounded-xl shadow-md border border-red-100 object-cover w-full max-w-[85vw] sm:max-w-none"
                 />
-                <p className="mt-3 text-lg font-semibold text-center">
+                <p className="mt-2 sm:mt-3 text-sm sm:text-base font-semibold text-center px-2">
                   {img.name}
                 </p>
               </div>
@@ -82,9 +81,9 @@ export default function Controls() {
 
       {/* Zoomable Modal */}
       {selectedImg && (
-        <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center">
+        <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center px-2 sm:px-6">
           <button
-            className="absolute top-6 right-6 bg-red-600 hover:bg-red-700 text-white rounded-full px-4 py-1 text-xl"
+            className="absolute top-4 right-4 sm:top-6 sm:right-6 bg-red-600 hover:bg-red-700 text-white rounded-full px-3 sm:px-4 py-1 text-lg sm:text-xl"
             onClick={() => setSelectedImg(null)}
           >
             ✕
@@ -95,9 +94,9 @@ export default function Controls() {
               <Image
                 src={selectedImg}
                 alt="Selected"
-                width={1100}
-                height={750}
-                className="rounded-xl shadow-2xl max-w-[95vw] max-h-[80vh] object-contain"
+                width={1000}
+                height={700}
+                className="rounded-lg sm:rounded-xl shadow-2xl max-w-[95vw] max-h-[75vh] object-contain"
                 priority
               />
             </TransformComponent>

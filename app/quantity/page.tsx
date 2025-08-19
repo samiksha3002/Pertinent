@@ -22,7 +22,7 @@ export default function Quantity() {
       {/* ✅ Service Details */}
        <ServiceDetails
         serviceTitle="Quantity Takeoff & Estimation"
-        serviceDesc="We help contractors with accurate material takeoffs to create competitive bids, reduce waste, and optimize costs."
+        serviceDesc="Accurate material takeoffs across all trades for building construction — helping contractors create competitive bids, reduce material waste, and stay within budget from the start."
         generalPoints={[
           "Site Work & Civil:Demolition, Excavation & Grading,Utilities (Water, Sewer, Storm, Gas),Paving (Concrete & Asphalt),Striping & Pavement Markings,Signage (Traffic, ADA, Wayfinding),Curb, Gutter, Sidewalks,Landscaping & Irrigation",
           "Concrete & Structural Work:Foundations, Slabs, Tilt Walls, Rebar, Post-tension",
