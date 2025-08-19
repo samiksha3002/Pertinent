@@ -29,8 +29,11 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({
           {serviceTitle}
         </motion.div>
 
+        {/* ✅ Description */}
+        <p className="text-gray-600 text-center mt-4 max-w-3xl">{serviceDesc}</p>
+
         {/* ✅ Connector */}
-        <div className="w-1 h-12 bg-red-500 mt-2 rounded-full"></div>
+        <div className="w-1 h-12 bg-red-500 mt-6 rounded-full"></div>
 
         {/* ✅ Branches */}
         <div className="flex flex-col md:flex-row justify-center items-start gap-12 md:gap-20 mt-6 md:mt-12 w-full">

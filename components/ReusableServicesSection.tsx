@@ -18,7 +18,7 @@ const data = [
     icon: <FaClipboardList size={30} />,
     title: "Project Controls Management",
     desc: "Seamless control over RFIs, submittals, and documentation — streamlining workflows and ensuring project compliance at every step.",
-    link: "/controls",
+    link: "/estimatio",
   },
   {
     icon: <FaEnvelopeOpenText size={30} />,
