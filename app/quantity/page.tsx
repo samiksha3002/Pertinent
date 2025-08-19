@@ -20,7 +20,7 @@ export default function Quantity() {
       />
 
       {/* ✅ Service Details */}
-      <ServiceDetails
+       <ServiceDetails
         serviceTitle="Quantity Takeoff & Estimation"
         serviceDesc="We help contractors with accurate material takeoffs to create competitive bids, reduce waste, and optimize costs."
         generalPoints={[
@@ -29,11 +29,12 @@ export default function Quantity() {
           "Comprehensive project-wide estimates",
         ]}
         subPoints={[
-          "Trade-specific material quantity reports",
+          "Trade-specific material reports",
           "Resource allocation & cost optimization",
           "Tailored breakdowns for accurate proposals",
         ]}
       />
+
 
       {/* ✅ Footer */}
       <Footer />
