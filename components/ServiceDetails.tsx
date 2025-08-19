@@ -1,78 +1,31 @@
 "use client";
 
+import React from "react";
 import { motion, Variants } from "framer-motion";
 
-// motion components banaye taaki TS type errors na aaye
-const MotionH1 = motion.h1;
-const MotionSpan = motion.span;
-const MotionP = motion.p;
-const MotionDiv = motion.div;
-const MotionLi = motion.li;
-
-// Animated Title Component
-interface AnimatedTitleProps {
-  text: string;
-}
-
-const AnimatedTitle = ({ text }: AnimatedTitleProps) => {
-  const letters = Array.from(text);
-
-  const container: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.05, delayChildren: 0.2 },
-    },
-  };
-
-  const child: Variants = {
-    hidden: { opacity: 0, y: 20, scale: 0.9 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: { type: "spring", stiffness: 300, damping: 20 },
-    },
-  };
-
-  return (
-    <MotionH1
-      variants={container}
-      initial="hidden"
-      animate="visible"
-      className="text-4xl md:text-5xl font-bold text-black mb-6 text-center"
-    >
-      {letters.map((letter, index) => (
-        <MotionSpan key={index} variants={child} className="inline-block">
-          {letter === " " ? "\u00A0" : letter}
-        </MotionSpan>
-      ))}
-    </MotionH1>
-  );
-};
-
-// Reusable InfoCard Component
+// ✅ Reusable InfoCard Component
 interface InfoCardProps {
   title: string;
   items: string[];
   delay?: number;
 }
 
-const InfoCard = ({ title, items, delay = 0 }: InfoCardProps) => {
+const InfoCard: React.FC<InfoCardProps> = ({ title, items, delay = 0 }) => {
   return (
-    <MotionDiv
+    <motion.div
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.7, delay }}
       className="flex flex-col items-center w-full md:w-1/2"
     >
-      <div className="bg-white border-2 border-red-600 text-red-600 font-semibold px-8 py-4 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition transform text-center text-lg">
+      <div className="bg-white border-2 border-red-600 text-red-600 font-semibold px-8 py-4 rounded-2xl shadow-md hover:shadow-lg hover:scale-105 transition transform text-center text-lg md:text-xl">
         {title}
       </div>
+
       <ul className="mt-6 space-y-3 w-full">
         {items.map((item, idx) => (
-          <MotionLi
+          <motion.li
             key={idx}
             whileHover={{
               scale: 1.03,
@@ -82,21 +35,22 @@ const InfoCard = ({ title, items, delay = 0 }: InfoCardProps) => {
           >
             <span className="mr-3 text-red-600 font-bold">✓</span>
             <span className="text-sm md:text-base">{item}</span>
-          </MotionLi>
+          </motion.li>
         ))}
       </ul>
-    </MotionDiv>
+    </motion.div>
   );
 };
 
-export default function QuantityPage() {
-  const generalContractorItems: string[] = [
+// ✅ Page Component
+const QuantityPage: React.FC = () => {
+  const generalContractorItems = [
     "Detailed material takeoffs for competitive bidding",
     "Budget forecasting with reduced risk",
     "Comprehensive project-wide estimates",
   ];
 
-  const subcontractorItems: string[] = [
+  const subcontractorItems = [
     "Trade-specific material quantity reports",
     "Resource allocation & cost optimization",
     "Tailored breakdowns for accurate proposals",
@@ -104,33 +58,22 @@ export default function QuantityPage() {
 
   return (
     <section className="relative w-full min-h-screen bg-white py-20 px-6">
-      <div className="text-center max-w-3xl mx-auto">
-        <AnimatedTitle text="Quantity Takeoff & Estimation" />
-        <MotionP
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-gray-600 text-base md:text-lg leading-relaxed"
-        >
-          Quantity Takeoff & Estimation is the process of accurately measuring
-          materials, labor, and resources required for a construction project.
-          It ensures precise budgeting, effective resource allocation, and
-          reduced risk for both general contractors and subcontractors.
-        </MotionP>
-      </div>
-
+      {/* Tree Layout */}
       <div className="flex flex-col items-center max-w-6xl mx-auto mt-16 relative">
-        <MotionDiv
+        {/* Root Node */}
+        <motion.div
           initial={{ opacity: 0, scale: 0.85 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
-          className="bg-red-600 text-white font-bold text-lg md:text-xl px-10 py-5 rounded-2xl shadow-xl hover:scale-105 hover:shadow-red-300 transition transform"
+          className="bg-red-600 text-white font-bold text-lg md:text-xl px-12 py-5 rounded-2xl shadow-xl hover:scale-105 hover:shadow-red-300 transition transform"
         >
           Quantity Takeoff & Estimation
-        </MotionDiv>
+        </motion.div>
 
-        <div className="w-1 h-12 bg-red-500 mt-2"></div>
+        {/* Connector */}
+        <div className="w-1 h-12 bg-red-500 mt-2 rounded-full"></div>
 
+        {/* Branches */}
         <div className="flex flex-col md:flex-row justify-center items-start gap-12 md:gap-20 mt-6 md:mt-12 w-full">
           <InfoCard title="General Contractor" items={generalContractorItems} />
           <InfoCard title="Subcontractor" items={subcontractorItems} delay={0.2} />
@@ -138,4 +81,6 @@ export default function QuantityPage() {
       </div>
     </section>
   );
-}
+};
+
+export default QuantityPage;
