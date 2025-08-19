@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 
 // ✅ Reusable InfoCard Component
 interface InfoCardProps {
@@ -19,10 +19,12 @@ const InfoCard: React.FC<InfoCardProps> = ({ title, items, delay = 0 }) => {
       transition={{ duration: 0.7, delay }}
       className="flex flex-col items-center w-full md:w-1/2"
     >
+      {/* Card Title */}
       <div className="bg-white border-2 border-red-600 text-red-600 font-semibold px-8 py-4 rounded-2xl shadow-md hover:shadow-lg hover:scale-105 transition transform text-center text-lg md:text-xl">
         {title}
       </div>
 
+      {/* Card Items */}
       <ul className="mt-6 space-y-3 w-full">
         {items.map((item, idx) => (
           <motion.li
@@ -70,7 +72,7 @@ const QuantityPage: React.FC = () => {
           Quantity Takeoff & Estimation
         </motion.div>
 
-        {/* Connector */}
+        {/* Connector Line */}
         <div className="w-1 h-12 bg-red-500 mt-2 rounded-full"></div>
 
         {/* Branches */}
