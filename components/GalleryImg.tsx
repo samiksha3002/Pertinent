@@ -57,30 +57,48 @@ export default function GalleryImg() {
         <div className="bg-white border border-red-500 rounded-2xl shadow-sm px-5 py-6 sm:py-8 flex items-center justify-center">
           <h3 className="text-xl sm:text-3xl font-bold text-center leading-snug">
             Quantity Take Off <br />
-            <span className="text-red-600">&nbsp;Estimation</span>
+            <span className="text-red-600">&nbsp; Estimation</span>
           </h3>
         </div>
 
         {/* Right scrolling gallery */}
         <div className="overflow-hidden flex flex-col gap-6">
           {/* Mobile: single row */}
-          <div className="sm:hidden">
-            <motion.div
-              style={{ display: "flex", gap: "1rem" }}
-              animate={{ x: ["0%", "-50%"] }}
-              transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
-            >
-              {[...row1Images, ...row2Images].map((src, i) => (
-                <img
-                  key={`mobile-${i}`}
-                  src={src}
-                  alt={`mobile-${i}`}
-                  className="rounded-xl shadow-md border border-red-100 cursor-pointer w-[70%] sm:w-[360px] h-auto"
-                  onClick={() => setSelectedImg(src)}
-                />
-              ))}
-            </motion.div>
-          </div>
+          <div className="sm:hidden flex flex-col gap-4">
+  {/* Row 1 */}
+  <motion.div
+    style={{ display: "flex", gap: "1rem" }}
+    animate={{ x: ["0%", "-50%"] }}
+    transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
+  >
+    {[...row1Images, ...row1Images].map((src, i) => (
+      <img
+        key={`mobile-row1-${i}`}
+        src={src}
+        alt={`mobile-row1-${i}`}
+        className="rounded-lg shadow-md border border-red-100 cursor-pointer object-cover w-[220px] h-[150px]"
+        onClick={() => setSelectedImg(src)}
+      />
+    ))}
+  </motion.div>
+
+  {/* Row 2 */}
+  <motion.div
+    style={{ display: "flex", gap: "1rem" }}
+    animate={{ x: ["-50%", "0%"] }} // opposite direction for variety
+    transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
+  >
+    {[...row2Images, ...row2Images].map((src, i) => (
+      <img
+        key={`mobile-row2-${i}`}
+        src={src}
+        alt={`mobile-row2-${i}`}
+        className="rounded-lg shadow-md border border-red-100 cursor-pointer object-cover w-[220px] h-[150px]"
+        onClick={() => setSelectedImg(src)}
+      />
+    ))}
+  </motion.div>
+</div>
 
           {/* Desktop: two rows */}
           <div className="hidden sm:flex flex-col gap-6">
@@ -88,7 +106,7 @@ export default function GalleryImg() {
             <motion.div
               style={{ display: "flex", gap: "1.5rem" }}
               animate={{ x: ["0%", "-50%"] }}
-              transition={{ repeat: Infinity, duration: 22, ease: "linear" }}
+              transition={{ repeat: Infinity, duration: 5, ease: "linear" }}
             >
               {[...row1Images, ...row1Images].map((src, i) => (
                 <img

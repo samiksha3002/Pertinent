@@ -49,19 +49,25 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({
               General Contractor
             </div>
             <ul className="mt-6 space-y-3 w-full">
-              {generalPoints.map((item, idx) => (
-                <motion.li
-                  key={idx}
-                  whileHover={{
-                    scale: 1.03,
-                    boxShadow: "0 8px 20px rgba(239, 68, 68, 0.3)",
-                  }}
-                  className="flex items-center bg-white border border-gray-200 px-5 py-3 rounded-xl shadow-sm transition transform text-gray-700"
-                >
-                  <span className="mr-3 text-red-600 font-bold">✓</span>
-                  <span className="text-sm md:text-base">{item}</span>
-                </motion.li>
-              ))}
+              {generalPoints.map((item, idx) => {
+                const [beforeColon, afterColon] = item.split(":");
+                return (
+                  <motion.li
+                    key={idx}
+                    whileHover={{
+                      scale: 1.03,
+                      boxShadow: "0 8px 20px rgba(239, 68, 68, 0.3)",
+                    }}
+                    className="flex items-center bg-white border border-gray-200 px-5 py-3 rounded-xl shadow-sm transition transform text-gray-700"
+                  >
+                    <span className="mr-3 text-red-600 font-bold">✓</span>
+                    <span className="text-sm md:text-base">
+                      <strong>{beforeColon?.trim()}</strong>
+                      {afterColon && `: ${afterColon.trim()}`}
+                    </span>
+                  </motion.li>
+                );
+              })}
             </ul>
           </motion.div>
 
@@ -78,19 +84,25 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({
                 Subcontractor
               </div>
               <ul className="mt-6 space-y-3 w-full">
-                {subPoints.map((item, idx) => (
-                  <motion.li
-                    key={idx}
-                    whileHover={{
-                      scale: 1.03,
-                      boxShadow: "0 8px 20px rgba(239, 68, 68, 0.3)",
-                    }}
-                    className="flex items-center bg-white border border-gray-200 px-5 py-3 rounded-xl shadow-sm transition transform text-gray-700"
-                  >
-                    <span className="mr-3 text-red-600 font-bold">✓</span>
-                    <span className="text-sm md:text-base">{item}</span>
-                  </motion.li>
-                ))}
+                {subPoints.map((item, idx) => {
+                  const [beforeColon, afterColon] = item.split(":");
+                  return (
+                    <motion.li
+                      key={idx}
+                      whileHover={{
+                        scale: 1.03,
+                        boxShadow: "0 8px 20px rgba(239, 68, 68, 0.3)",
+                      }}
+                      className="flex items-center bg-white border border-gray-200 px-5 py-3 rounded-xl shadow-sm transition transform text-gray-700"
+                    >
+                      <span className="mr-3 text-red-600 font-bold">✓</span>
+                      <span className="text-sm md:text-base">
+                        <strong>{beforeColon?.trim()}</strong>
+                        {afterColon && `: ${afterColon.trim()}`}
+                      </span>
+                    </motion.li>
+                  );
+                })}
               </ul>
             </motion.div>
           )}

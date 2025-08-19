@@ -4,19 +4,29 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FiMenu, FiX } from "react-icons/fi";
+import { ChevronDown } from "lucide-react"; // dropdown arrow
 import clsx from "clsx";
 
 const navLinks = [
   { name: "Home", to: "/", isPage: true },
   { name: "About", to: "/about", isPage: true },
-  { name: "Services", to: "/service", isPage: true },
+  {
+    name: "Services",
+    to: "#",
+    isPage: false,
+    subLinks: [
+      { name: "Quantity Takeoff & Estimation", to: "/quantity" },
+      { name: "Project Controls Management", to: "/Estimatio" },
+      { name: "ITB Support", to: "/bid" },
+    ],
+  },
   { name: "Projects", to: "/gallery", isPage: true },
   { name: "Contact", to: "/contact", isPage: true },
 ];
 
 // Adjust these to EXACT hero logo size (in pixels)
-const LOGO_HEIGHT = 60; // hero logo height
-const LOGO_WIDTH = 160; // hero logo width
+const LOGO_HEIGHT = 60;
+const LOGO_WIDTH = 160;
 
 const Header = () => {
   const pathname = usePathname();
@@ -24,6 +34,7 @@ const Header = () => {
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [scrolled, setScrolled] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false); // dropdown state
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,24 +79,58 @@ const Header = () => {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-10">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.to}
-              className={clsx(
-                "text-lg font-medium transition relative group",
-                pathname === link.to
-                  ? "text-red-500"
-                  : scrolled
-                  ? "text-black hover:text-red-500"
-                  : "text-white hover:text-red-500"
-              )}
-            >
-              {link.name}
-              <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-red-600 transition-all duration-300 group-hover:w-full"></span>
-            </Link>
-          ))}
+        <nav className="hidden md:flex space-x-10 relative">
+          {navLinks.map((link) =>
+            link.subLinks ? (
+              <div
+                key={link.name}
+                className="relative group"
+                onMouseEnter={() => setServicesOpen(true)}
+                onMouseLeave={() => setServicesOpen(false)}
+              >
+                <button
+                  className={clsx(
+                    "flex items-center text-lg font-medium transition relative group",
+                    scrolled ? "text-black hover:text-red-500" : "text-white hover:text-red-500"
+                  )}
+                >
+                  {link.name}
+                  <ChevronDown size={18} className="ml-1" />
+                </button>
+
+                {/* Dropdown Menu */}
+                {servicesOpen && (
+                  <div className="absolute left-0 mt-2 w-64 bg-white shadow-lg rounded-lg py-3 z-50">
+                    {link.subLinks.map((sublink) => (
+                      <Link
+                        key={sublink.name}
+                        href={sublink.to}
+                        className="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600"
+                      >
+                        {sublink.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link
+                key={link.name}
+                href={link.to}
+                className={clsx(
+                  "text-lg font-medium transition relative group",
+                  pathname === link.to
+                    ? "text-red-500"
+                    : scrolled
+                    ? "text-black hover:text-red-500"
+                    : "text-white hover:text-red-500"
+                )}
+              >
+                {link.name}
+                <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-red-600 transition-all duration-300 group-hover:w-full"></span>
+              </Link>
+            )
+          )}
         </nav>
 
         {/* Mobile Menu Button */}
@@ -103,21 +148,47 @@ const Header = () => {
       {/* Mobile Navigation */}
       {menuOpen && (
         <div className="md:hidden bg-black px-6 pt-2 pb-6 flex flex-col gap-4 transition-all duration-300">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.to}
-              onClick={() => setMenuOpen(false)}
-              className={clsx(
-                "text-lg",
-                pathname === link.to
-                  ? "text-red-500"
-                  : "text-white hover:text-red-500"
-              )}
-            >
-              {link.name}
-            </Link>
-          ))}
+          {navLinks.map((link) =>
+            link.subLinks ? (
+              <div key={link.name} className="flex flex-col">
+                <button
+                  onClick={() => setServicesOpen(!servicesOpen)}
+                  className="flex justify-between items-center text-white hover:text-red-500"
+                >
+                  {link.name}
+                  <ChevronDown size={18} />
+                </button>
+                {servicesOpen && (
+                  <div className="ml-4 mt-2 flex flex-col gap-2">
+                    {link.subLinks.map((sublink) => (
+                      <Link
+                        key={sublink.name}
+                        href={sublink.to}
+                        onClick={() => setMenuOpen(false)}
+                        className="text-gray-300 hover:text-red-500"
+                      >
+                        {sublink.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link
+                key={link.name}
+                href={link.to}
+                onClick={() => setMenuOpen(false)}
+                className={clsx(
+                  "text-lg",
+                  pathname === link.to
+                    ? "text-red-500"
+                    : "text-white hover:text-red-500"
+                )}
+              >
+                {link.name}
+              </Link>
+            )
+          )}
         </div>
       )}
     </header>
