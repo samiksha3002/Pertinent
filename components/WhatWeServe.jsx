@@ -45,7 +45,7 @@ const WhatWeServe = () => {
         className="max-w-7xl mx-auto text-center mb-12"
       >
          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-black">
-        Construction<span className="text-red-600">Phase</span>
+        Construction<span className="text-red-600"> Phase</span>
       </h2>
         <div className="h-1 w-16 bg-red-600 mx-auto mt-4 rounded-full" />
       </motion.div>
