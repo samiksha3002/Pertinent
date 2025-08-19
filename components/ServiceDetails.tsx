@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-// Animated Title Component
+// ✅ Animated Title Component
 const AnimatedTitle = ({ text }: { text: string }) => {
   const letters = Array.from(text);
 
@@ -32,29 +32,22 @@ const AnimatedTitle = ({ text }: { text: string }) => {
       className="text-4xl md:text-5xl font-bold text-black mb-6 text-center"
     >
       {letters.map((letter, index) => (
-        <motion.span
-          key={index}
-          variants={child}
-          className="inline-block"
-          aria-hidden={letter === " "}
-        >
-          {letter}
+        <motion.span key={index} variants={child} className="inline-block">
+          {letter === " " ? "\u00A0" : letter}
         </motion.span>
       ))}
     </motion.h1>
   );
 };
 
-// Reusable InfoCard Component
-const InfoCard = ({
-  title,
-  items,
-  delay = 0,
-}: {
+// ✅ Reusable InfoCard Component
+interface InfoCardProps {
   title: string;
   items: string[];
   delay?: number;
-}) => {
+}
+
+const InfoCard = ({ title, items, delay = 0 }: InfoCardProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -88,6 +81,7 @@ const InfoCard = ({
   );
 };
 
+// ✅ Page Component
 export default function QuantityPage() {
   const generalContractorItems = [
     "Detailed material takeoffs for competitive bidding",
@@ -119,7 +113,7 @@ export default function QuantityPage() {
         </motion.p>
       </div>
 
-      {/* Tree Diagram */}
+      {/* Tree Layout */}
       <div className="flex flex-col items-center max-w-6xl mx-auto mt-16 relative">
         {/* Root Node */}
         <motion.div
@@ -131,20 +125,13 @@ export default function QuantityPage() {
           Quantity Takeoff & Estimation
         </motion.div>
 
-        {/* Connector line from root to children */}
+        {/* Connector */}
         <div className="w-1 h-12 bg-red-500 mt-2"></div>
 
         {/* Branches */}
         <div className="flex flex-col md:flex-row justify-center items-start gap-12 md:gap-20 mt-6 md:mt-12 w-full">
-          {/* General Contractor */}
           <InfoCard title="General Contractor" items={generalContractorItems} />
-
-          {/* Subcontractor */}
-          <InfoCard
-            title="Subcontractor"
-            items={subcontractorItems}
-            delay={0.2}
-          />
+          <InfoCard title="Subcontractor" items={subcontractorItems} delay={0.2} />
         </div>
       </div>
     </section>
