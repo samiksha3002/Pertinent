@@ -1,84 +1,78 @@
 "use client";
 
 import React from "react";
-import { FaCalculator, FaClipboardList, FaEnvelopeOpenText, FaCheckCircle } from "react-icons/fa";
+import { FaCalculator, FaClipboardList, FaEnvelopeOpenText } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 const MDiv: any = motion.div;
 
 const data = [
   {
-    icon: <FaCalculator size={28} />,
+    icon: <FaCalculator size={30} />,
     title: "Quantity Takeoff & Estimation",
-    points: ["General Contractors", "Subcontractors"],
-    desc: "Accurate material takeoffs for building construction — helping contractors create competitive bids, reduce waste, and stay within budget."
+    desc: "Accurate and reliable quantity takeoffs that help reduce waste, improve cost efficiency, and empower smarter bidding decisions.",
+    link: "/quantity", // 👈 redirect path
   },
   {
-    icon: <FaClipboardList size={28} />,
+    icon: <FaClipboardList size={30} />,
     title: "Project Controls Management",
-    points: ["General Contractors", "Subcontractors"],
-    desc: "Streamlined management of submittals, RFIs, revisions, and closeout documentation — ensuring smooth workflows and full compliance."
+    desc: "Seamless control over RFIs, submittals, and documentation — streamlining workflows and ensuring project compliance at every step.",
+    link: "/controls",
   },
   {
-    icon: <FaEnvelopeOpenText size={28} />,
+    icon: <FaEnvelopeOpenText size={30} />,
     title: "Bid Management & ITB Support",
-    points: ["General Contractors", "Subcontractors"],
-    desc: "End-to-end support for invitation-to-bid (ITB) processes — vendor communication, bid tracking, and document coordination."
+    desc: "From invitation-to-bid to vendor coordination, we simplify communication and tracking — making bidding smooth and transparent.",
+    link: "/bid",
   },
 ];
 
 export default function ServicesSection() {
+  const router = useRouter();
+
   return (
-    <section className="py-20 px-6 bg-gray-50">
+    <section className="py-20 px-6 bg-gradient-to-b from-gray-50 to-white">
       {/* Section Header */}
-      <div className="text-center mb-12">
-        <p className="text-gray-500 max-w-xl mx-auto">
-          Making Construction Smoother — Here’s How
+      <div className="text-center mb-16">
+        <h2 className="text-4xl font-bold text-gray-900 tracking-tight">
+          Our Core Services
+        </h2>
+        <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
+          Driving construction success with expertise, precision, and innovation.
         </p>
-        <div className="h-1 w-16 bg-red-600 mx-auto mt-4 rounded-full" />
+        <div className="h-1 w-20 bg-red-600 mx-auto mt-6 rounded-full" />
       </div>
 
-      {/* Stacked Cards */}
-      <div className="flex flex-col gap-16 max-w-5xl mx-auto">
+      {/* Grid Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
         {data.map((service, idx) => (
           <MDiv
             key={idx}
-            className="relative bg-white rounded-xl shadow-xl p-12 cursor-pointer hover:scale-105 hover:shadow-2xl transition-all duration-500 overflow-hidden min-h-[500px] lg:min-h-[550px]"
+            onClick={() => router.push(service.link)} // 👈 redirect on click
+            className="relative bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 p-10 flex flex-col items-start text-left border border-gray-100 hover:-translate-y-2 cursor-pointer"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: idx * 0.3 }}
+            transition={{ duration: 0.6, delay: idx * 0.2 }}
           >
             {/* Icon */}
-            <div className="bg-red-100 text-red-600 p-5 r rounded-full w-20 h-20 flex items-center justify-center mb-6">
+            <div className="bg-red-100 text-red-600 p-5 rounded-2xl shadow-inner mb-6">
               {service.icon}
             </div>
 
             {/* Title */}
-            <h3 className="text-3xl font-bold text-black mb-4">{service.title}</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              {service.title}
+            </h3>
 
             {/* Description */}
-            <p className="text-gray-600 mb-8">{service.desc}</p>
+            <p className="text-gray-600 leading-relaxed">
+              {service.desc}
+            </p>
 
-            {/* Sub Points Side by Side */}
-            <div className="flex flex-col md:flex-row gap-6">
-              {service.points.map((point, i) => (
-                <MDiv
-                  key={i}
-                  className="flex-1 bg-gray-50 border border-gray-200 rounded-xl p-6 flex items-center justify-start gap-3 hover:bg-red-50 hover:scale-105 transition-all cursor-pointer shadow-sm"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.2 }}
-                >
-                  <FaCheckCircle className="text-red-500 w-6 h-6 flex-shrink-0" />
-                  <span className="font-semibold text-gray-800 text-lg">{point}</span>
-                </MDiv>
-              ))}
-            </div>
-
-            {/* Decorative background shape */}
-            <div className="absolute top-0 right-0 w-36 h-36 bg-red-100 rounded-full -translate-x-20 -translate-y-20 opacity-30 pointer-events-none"></div>
+            {/* Decorative shape */}
+            <div className="absolute -bottom-6 -right-6 w-28 h-28 bg-red-50 rounded-full opacity-40 blur-2xl pointer-events-none" />
           </MDiv>
         ))}
       </div>
