@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 
 // Animated Title Component
-const AnimatedTitle = ({ text }) => {
+const AnimatedTitle = ({ text }: { text: string }) => {
   const letters = Array.from(text);
 
   const container = {
@@ -29,10 +29,15 @@ const AnimatedTitle = ({ text }) => {
       variants={container}
       initial="hidden"
       animate="visible"
-      className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 text-center"
+      className="text-4xl md:text-5xl font-bold text-black mb-6 text-center"
     >
       {letters.map((letter, index) => (
-        <motion.span key={index} variants={child} className="inline-block">
+        <motion.span
+          key={index}
+          variants={child}
+          className="inline-block"
+          aria-hidden={letter === " "}
+        >
           {letter}
         </motion.span>
       ))}
@@ -41,7 +46,15 @@ const AnimatedTitle = ({ text }) => {
 };
 
 // Reusable InfoCard Component
-const InfoCard = ({ title, items, delay = 0 }) => {
+const InfoCard = ({
+  title,
+  items,
+  delay = 0,
+}: {
+  title: string;
+  items: string[];
+  delay?: number;
+}) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -51,7 +64,7 @@ const InfoCard = ({ title, items, delay = 0 }) => {
       className="flex flex-col items-center w-full md:w-1/2"
     >
       {/* Card Title */}
-      <div className="bg-white border-2 border-red-600 text-red-600 font-semibold px-6 py-3 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition transform text-center">
+      <div className="bg-white border-2 border-red-600 text-red-600 font-semibold px-8 py-4 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition transform text-center text-lg">
         {title}
       </div>
 
@@ -64,9 +77,9 @@ const InfoCard = ({ title, items, delay = 0 }) => {
               scale: 1.03,
               boxShadow: "0 8px 20px rgba(239, 68, 68, 0.3)",
             }}
-            className="flex items-center bg-gradient-to-r from-gray-50 via-white to-gray-50 border border-gray-200 px-4 py-3 rounded-xl shadow-sm transition transform text-gray-700"
+            className="flex items-center bg-white border border-gray-200 px-5 py-3 rounded-xl shadow-sm transition transform text-gray-700"
           >
-            <span className="mr-2 text-red-600 font-bold">✓</span>
+            <span className="mr-3 text-red-600 font-bold">✓</span>
             <span className="text-sm md:text-base">{item}</span>
           </motion.li>
         ))}
@@ -113,16 +126,16 @@ export default function QuantityPage() {
           initial={{ opacity: 0, scale: 0.85 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
-          className="bg-red-600 text-white font-bold text-lg md:text-xl px-8 md:px-12 py-4 md:py-5 rounded-2xl shadow-xl hover:scale-105 hover:shadow-red-300 transition transform"
+          className="bg-red-600 text-white font-bold text-lg md:text-xl px-10 py-5 rounded-2xl shadow-xl hover:scale-105 hover:shadow-red-300 transition transform"
         >
           Quantity Takeoff & Estimation
         </motion.div>
 
-        {/* Branches */}
-        <div className="flex flex-col md:flex-row justify-center items-start gap-10 md:gap-20 mt-10 md:mt-16 w-full relative">
-          {/* Connector Line */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1 h-16 md:h-20 bg-gradient-to-b from-red-500 to-gray-300"></div>
+        {/* Connector line from root to children */}
+        <div className="w-1 h-12 bg-red-500 mt-2"></div>
 
+        {/* Branches */}
+        <div className="flex flex-col md:flex-row justify-center items-start gap-12 md:gap-20 mt-6 md:mt-12 w-full">
           {/* General Contractor */}
           <InfoCard title="General Contractor" items={generalContractorItems} />
 
