@@ -152,7 +152,7 @@ export default function GalleryImg() {
   <motion.div
     style={{ display: "flex", gap: "1.5rem" }}
     animate={{ x: ["0%", "-2000%"] }} // move full width
-    transition={{ repeat: Infinity, duration: 60, ease: "linear" }}
+    transition={{ repeat: Infinity, duration: 90, ease: "linear" }}
   >
     {[...row2Images, ...row2Images].map((src, i) => (
       <img
