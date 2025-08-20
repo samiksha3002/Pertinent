@@ -35,12 +35,10 @@ export default function ServicesSection() {
     <section className="py-20 px-6 bg-gradient-to-b from-gray-50 to-white">
       {/* Section Header */}
       <div className="text-center mb-16">
-        <h2 className="text-4xl font-bold text-gray-900 tracking-tight">
-          Our Core Services
-        </h2>
-        <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
-          Driving construction success with expertise, precision, and innovation.
-        </p>
+       
+       <p className="text-gray-600 font-bold mt-2 max-w-2xl mx-auto">
+  Driving construction success with expertise, precision, and innovation.
+</p>
         <div className="h-1 w-20 bg-red-600 mx-auto mt-6 rounded-full" />
       </div>
 
