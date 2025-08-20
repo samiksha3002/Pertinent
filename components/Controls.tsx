@@ -65,7 +65,7 @@ export default function Controls() {
               willChange: "transform",
             }}
             animate={{ x: [0, -scrollWidth] }}
-            transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
+            transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
           >
             {[...images, ...images].map((img, i) => (
               <div
