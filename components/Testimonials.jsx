@@ -19,12 +19,12 @@ const testimonials = [
       "We’ve been working with Pertinent for a year now, and I’m really happy with the quality of their work and timely project submissions. The best part is they flag RFIs in the drawings, which helps us evaluate pricing before the bid deadline and saves us from the last-day rush.",
     rating: 4,
   },
- 
 ];
 
 const Testimonials = () => {
   return (
     <section className="bg-gray-50 py-20 px-6" id="testimonials">
+      {/* Heading */}
       <motion.div
         className="max-w-7xl mx-auto text-center mb-12"
         initial={{ y: 40, opacity: 0 }}
@@ -41,11 +41,12 @@ const Testimonials = () => {
         <div className="h-1 w-14 bg-red-600 mx-auto mt-4 rounded-full" />
       </motion.div>
 
-      <div className="grid md:grid-cols-3 gap-6 max-w-7xl mx-auto">
+      {/* Testimonials Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto justify-items-center">
         {testimonials.map((t, index) => (
           <motion.div
             key={index}
-            className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition border border-gray-100"
+            className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition border border-gray-100 w-full md:w-auto"
             initial={{ y: 50, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: index * 0.2 }}
@@ -60,7 +61,9 @@ const Testimonials = () => {
                   <FaStar key={i} />
                 ))}
             </div>
-            <h4 className="text-md font-semibold text-black">{t.name}</h4>
+            <h4 className="text-md font-semibold text-black">
+              {t.name || "Anonymous"}
+            </h4>
             <p className="text-sm text-gray-500">{t.role}</p>
           </motion.div>
         ))}

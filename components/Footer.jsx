@@ -30,7 +30,7 @@ const Footer = () => {
             />
           </div>
           <p className="text-sm text-gray-400 leading-relaxed">
-            PERTINENT is a construction services company, providing expert
+            PERTINENT is a construction services company, providing expert 
 
             project support services to General Contractors, Subcontractors, and
             Suppliers in their daily tasks and throughout the life cycle of the
@@ -88,7 +88,7 @@ const Footer = () => {
           {/* Social Icons with Links */}
           <div className="mt-5 flex space-x-4 text-white">
             <a
-              href="https://www.instagram.com"
+              href=" https://www.instagram.com/pertinentconstructionservices/profilecard/?igsh=a2p1NmVnaWU1eHhx "
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 bg-gray-800 rounded-full hover:bg-red-600 transition"
@@ -96,7 +96,7 @@ const Footer = () => {
               <FaInstagram size={14} />
             </a>
             <a
-              href="https://www.instagram.com/pertinentconstructionservices/profilecard/?igsh=a2p1NmVnaWU1eHhx "
+              href="https://www.linkedin.com/company/pertinentconstructionservices"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 bg-gray-800 rounded-full hover:bg-red-600 transition"
