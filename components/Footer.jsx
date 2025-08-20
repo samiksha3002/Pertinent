@@ -78,9 +78,7 @@ const Footer = () => {
             Get in Touch
           </h3>
           <div className="space-y-3 text-sm text-gray-300">
-            <p className="flex items-center gap-2">
-              <FaPhoneAlt className="text-red-600" /> +91 940-408-0041
-            </p>
+            
             <p className="flex items-center gap-2">
               <FaEnvelope className="text-red-600" />
               projects@pertinentservices.com <br /> pertinent.cs@gmail.com
