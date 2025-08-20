@@ -56,20 +56,7 @@ const ContactSection = () => {
             </div>
           </div>
 
-          {/* Phone */}
-          <div className="flex items-start gap-4 mb-6">
-            <div className="bg-red-100 text-red-600 p-3 rounded-full">
-              <i className="fas fa-phone-alt" aria-hidden="true"></i>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold">Call Us</h3>
-              <p className="text-gray-700">
-                <a href="tel:+919404080041" className="hover:underline">
-                  +91-940-408-0041
-                </a>
-              </p>
-            </div>
-          </div>
+      
         </div>
 
         {/* Right: Contact Form */}

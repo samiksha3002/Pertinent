@@ -79,10 +79,30 @@ const Footer = () => {
           </h3>
           <div className="space-y-3 text-sm text-gray-300">
             
-            <p className="flex items-center gap-2">
-              <FaEnvelope className="text-red-600" />
-              projects@pertinentservices.com <br /> pertinent.cs@gmail.com
-            </p>
+           {/* Contact Emails */}
+{/* Contact Emails */}
+<div className="space-y-2 text-sm text-gray-300">
+  <p className="flex items-center gap-2">
+    <FaEnvelope className="text-red-600" />
+    <a
+      href="mailto:projects@pertinentservices.com"
+      className="hover:text-red-600 transition"
+    >
+      projects@pertinentservices.com
+    </a>
+  </p>
+  <p className="flex items-center gap-2">
+    <FaEnvelope className="text-red-600 invisible" /> {/* placeholder for alignment */}
+    <a
+      href="mailto:pertinent.cs@gmail.com"
+      className="hover:text-red-600 transition"
+    >
+      pertinent.cs@gmail.com
+    </a>
+  </p>
+</div>
+
+
           </div>
 
           {/* Social Icons with Links */}

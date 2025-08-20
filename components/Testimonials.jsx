@@ -13,7 +13,7 @@ const testimonials = [
     rating: 5,
   },
   {
-    name: "",
+    name: " ",
     role: "Flooring Supplier-Indianapolis, USA",
     feedback:
       "We’ve been working with Pertinent for a year now, and I’m really happy with the quality of their work and timely project submissions. The best part is they flag RFIs in the drawings, which helps us evaluate pricing before the bid deadline and saves us from the last-day rush.",
@@ -61,9 +61,12 @@ const Testimonials = () => {
                   <FaStar key={i} />
                 ))}
             </div>
+
+            {/* Safe hydration: always render h4 */}
             <h4 className="text-md font-semibold text-black">
-              {t.name || "Anonymous"}
+              {t.name && t.name.trim() !== "" ? t.name : ""}
             </h4>
+
             <p className="text-sm text-gray-500">{t.role}</p>
           </motion.div>
         ))}
