@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 export default function Controls() {
   const [selectedImg, setSelectedImg] = useState<string | null>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [scrollWidth, setScrollWidth] = useState(0);
 
   const images = [
     {
@@ -35,32 +37,40 @@ export default function Controls() {
     },
   ];
 
+  // Calculate total scroll width dynamically
+  useEffect(() => {
+    if (scrollRef.current) {
+      setScrollWidth(scrollRef.current.scrollWidth / 2); // since we duplicate images
+    }
+  }, []);
+
   return (
     <section className="w-full bg-white text-black py-10 px-4 sm:px-6">
       <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-[260px_1fr] gap-6 md:gap-8 items-stretch">
         {/* Left Box */}
-     <div className="bg-white border border-red-500 rounded-2xl shadow-sm flex items-center justify-center w-full sm:w-[220px] px-5 py-6 sm:py-8">
-  <h3 className="text-xl sm:text-3xl font-bold text-center leading-snug">
-    Project <br /> Controls <br />
-    <span className="text-red-600">Management</span>
-  </h3>
-</div>
+        <div className="bg-white border border-red-500 rounded-2xl shadow-sm flex items-center justify-center w-full sm:w-[220px] px-5 py-6 sm:py-8">
+          <h3 className="text-xl sm:text-3xl font-bold text-center leading-snug">
+            Project <br /> Controls <br />
+            <span className="text-red-600">Management</span>
+          </h3>
+        </div>
 
         {/* Right: Scrolling Row */}
         <div className="overflow-hidden">
           <motion.div
+            ref={scrollRef}
             style={{
               display: "flex",
-              gap: "1.5rem", // smaller gap for mobile
+              gap: "1.5rem",
               willChange: "transform",
             }}
-            animate={{ x: ["0%", "-500%"] }}
-            transition={{ repeat: Infinity, duration:25, ease: "linear" }}
+            animate={{ x: [0, -scrollWidth] }}
+            transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
           >
             {[...images, ...images].map((img, i) => (
               <div
                 key={i}
-                className="flex flex-col items-center min-w-[250px] sm:min-w-[300px] md:min-w-[360px] cursor-pointer"
+                className="flex flex-col items-center min-w-[360px] flex-shrink-0 cursor-pointer"
                 onClick={() => setSelectedImg(img.src)}
               >
                 <Image
@@ -68,9 +78,9 @@ export default function Controls() {
                   alt={img.name}
                   width={360}
                   height={260}
-                  className="rounded-lg sm:rounded-xl shadow-md border border-red-100 object-cover w-full max-w-[85vw] sm:max-w-none"
+                  className="rounded-xl shadow-md border border-red-100 object-cover w-full"
                 />
-                <p className="mt-2 sm:mt-3 text-sm sm:text-base font-semibold text-center px-2">
+                <p className="mt-3 text-base font-semibold text-center px-2">
                   {img.name}
                 </p>
               </div>
