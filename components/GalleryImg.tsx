@@ -79,9 +79,7 @@ export default function GalleryImg() {
 
   return (
     <section className="w-full bg-white text-black py-10 px-4 sm:px-6">
-      <h2 className="text-3xl sm:text-5xl font-extrabold text-center mb-10 sm:mb-12">
-        Our <span className="text-red-600">Projects</span>
-      </h2>
+     
 
       <div className="mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-[220px_1fr] gap-6 sm:gap-8 items-stretch">
         {/* Left slim box */}
