@@ -20,22 +20,22 @@ export default function Quantity() {
       />
 
       {/* ✅ Service Details */}
-       <ServiceDetails
-        serviceTitle="Bid Management and ITB"
-        serviceDesc="Streamlining Bid Processes for General Contractors & Subcontractors."
-        generalPoints={[
-          "Invitation Review:Review ITB documents to identify relevant trades, scope of work, and bid requirements.",
-          " Bid Package Organization:Structure and manage ITB documents including drawings, specs, and CSI-based scope breakdowns.",
-          " Trade Coverage & Outreach:Identify missing trades, reach out to qualified subcontractors/vendors, and maximize bid coverage.",
-          " Live Bid Tracking:Maintain real-time bid trackers to monitor incoming bids, follow-ups, and coverage gaps.",
-          "Follow-Ups & Communication Logs:Manage consistent communication with bidders and clients—reminders, updates, and clarifications.",
-          "Bid Comparison & Scope Sheets:Prepare detailed side-by-side bid comparisons and scope coverage matrices.",
-          " Proposal Review & Support:Assist in preparing, formatting, and submitting clear, compliant proposals with accurate inclusions and exclusions.",
-          " Organized Submission Management:Maintain all bid-related documents—proposals, RFIs, addenda, and notes—in clean, searchable formats."
-        ]}
-        
-      />
-
+      <ServiceDetails
+  serviceTitle="Bid Management and ITB"
+  serviceDesc="Streamlining Bid Processes for General Contractors & Subcontractors."
+  generalPoints={[
+    "Invitation Review:Review ITB documents to identify relevant trades, scope of work, and bid requirements.",
+    "Bid Package Organization:Structure and manage ITB documents including drawings, specs, and CSI-based scope breakdowns.",
+    "Trade Coverage & Outreach:Identify missing trades, reach out to qualified subcontractors/vendors, and maximize bid coverage.",
+    "Live Bid Tracking:Maintain real-time bid trackers to monitor incoming bids, follow-ups, and coverage gaps.",
+    "Follow-Ups & Communication Logs:Manage consistent communication with bidders and clients—reminders, updates, and clarifications.",
+    "Bid Comparison & Scope Sheets:Prepare detailed side-by-side bid comparisons and scope coverage matrices.",
+    "Proposal Review & Support:Assist in preparing, formatting, and submitting clear, compliant proposals with accurate inclusions and exclusions.",
+    "Organized Submission Management:Maintain all bid-related documents—proposals, RFIs, addenda, and notes—in clean, searchable formats."
+  ]}
+  subPoints={[]} // No separate subPoints
+  combinedTitle="General Contractor & Subcontractor"
+/>
 
       {/* ✅ Footer */}
       <Footer />

@@ -48,7 +48,7 @@ export default function Quantity() {
           "Exterior Improvements:Asphalt paving (SY/Tons),Concrete paving (SY/CY),Curbs, gutters (LF),Fencing (LF),Landscaping (SF, plant count, irrigation LF)",
         ]}
         subPoints={[
-          "Demolition Contractor :lective demo, removals, site clearing.",
+          "Demolition Contractor :Selective demo, removals, site clearing.",
           "Concrete Contractor:footings, slabs, walls, rebar, formwork.",
           "Concrete Contractor:footings, slabs, walls, rebar, formwork.",
           "Structural Steel Contractor:steel frames, decking.",
