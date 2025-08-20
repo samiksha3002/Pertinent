@@ -28,7 +28,7 @@ const AboutUs = () => {
             suppliers across commercial, multifamily, retail, and industrial
             projects.
           </p>
-          <p>
+          <p className="text-gray-800 text-lg mb-4 leading-relaxed">
             With hands-on expertise across all trades in building construction,
             we act as an extension of your team — helping you bid smarter,
             manage projects seamlessly, and deliver with confidence. Whether
