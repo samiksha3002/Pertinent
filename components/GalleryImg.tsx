@@ -83,7 +83,7 @@ export default function GalleryImg() {
 
       <div className="mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-[220px_1fr] gap-6 sm:gap-8 items-stretch">
         {/* Left slim box */}
-          <div className="bg-white border border-red-500 rounded-2xl shadow-sm px-5 py-6 sm:py-8 flex items-center justify-center">
+          <div className="bg-white border border-red-500 rounded-2xl shadow-4xl px-5 py-6 sm:py-8 flex items-center justify-center">
     <h3 className="text-xl sm:text-3xl font-bold text-center leading-snug">
       Quantity Take Off <br />
       <span className="text-red-600">And Estimation</span>

@@ -48,7 +48,7 @@ export default function Controls() {
     <section className="w-full bg-white text-black py-10 px-4 sm:px-6">
       <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-[260px_1fr] gap-6 md:gap-8 items-stretch">
         {/* Left Box */}
-        <div className="bg-white border border-red-500 rounded-2xl shadow-sm flex items-center justify-center w-full sm:w-[220px] px-5 py-6 sm:py-8">
+        <div className="bg-white border border-red-500 rounded-2xl shadow-2xl flex items-center justify-center w-full sm:w-[220px] px-5 py-6 sm:py-8">
           <h3 className="text-xl sm:text-3xl font-bold text-center leading-snug">
             Project <br /> Controls <br />
             <span className="text-red-600">Management</span>

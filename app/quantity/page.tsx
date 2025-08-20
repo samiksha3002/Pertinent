@@ -84,9 +84,7 @@ export default function Quantity() {
           "Utility Contractor:storm, sanitary, water, manholes, site piping.",
         ]}
       />
-
-
-      {/* ✅ Footer */}
+        {/* ✅ Footer */}
       <Footer />
     </div>
   );
