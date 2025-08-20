@@ -40,3 +40,6 @@ body {
   animation: scroll-fast 15s linear infinite;
 }
 
+h2 {
+  @apply text-4xl md:text-5xl font-bold leading-tight;
+}

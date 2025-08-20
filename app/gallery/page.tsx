@@ -14,8 +14,7 @@ const gallery = () => {
       <Header />
       <PageBanner
         title="Projects"
-        description="Explore our gallery to witness the craftsmanship and quality behind every project we’ve delivered.
-From residential to industrial structures, each image reflects our engineering precision and commitment to excellence."
+        description="At Pertinent, we specialize in delivering high-quality construction solutions that combine precision, innovation, and durability. Our projects reflect our commitment to excellence, from meticulous planning to flawless execution. Explore our work to see how Pertinent brings visions to life, creating structures that stand the test of time."
         backgroundImage="/pertinent9.jpg" // ✅ Image in public folder
       />
 

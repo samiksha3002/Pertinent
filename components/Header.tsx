@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FiMenu, FiX } from "react-icons/fi";
@@ -33,8 +33,10 @@ const Header = () => {
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [scrolled, setScrolled] = useState(false);
- const [openDropdown, setOpenDropdown] = useState(null);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
+  // timeout ref
+  const dropdownTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,6 +54,17 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
+
+  const handleMouseEnter = (name: string) => {
+    if (dropdownTimeout.current) clearTimeout(dropdownTimeout.current);
+    setOpenDropdown(name);
+  };
+
+  const handleMouseLeave = () => {
+    dropdownTimeout.current = setTimeout(() => {
+      setOpenDropdown(null);
+    }, 200); // 200ms delay before closing
+  };
 
   return (
     <header
@@ -85,8 +98,8 @@ const Header = () => {
               <div
                 key={link.name}
                 className="relative group"
-                onMouseEnter={() => setOpenDropdown(link.name)}
-                onMouseLeave={() => setOpenDropdown(null)}
+                onMouseEnter={() => handleMouseEnter(link.name)}
+                onMouseLeave={handleMouseLeave}
               >
                 {/* Main Services link */}
                 <Link
@@ -104,7 +117,11 @@ const Header = () => {
 
                 {/* Dropdown Menu */}
                 {openDropdown === link.name && (
-                  <div className="absolute left-0 mt-2 w-64 bg-white shadow-lg rounded-lg py-3 z-50">
+                  <div
+                    className="absolute left-0 mt-2 w-64 bg-white shadow-lg rounded-lg py-3 z-50"
+                    onMouseEnter={() => handleMouseEnter(link.name)} // keep open when hovering dropdown
+                    onMouseLeave={handleMouseLeave}
+                  >
                     {link.subLinks.map((sublink) => (
                       <Link
                         key={sublink.name}

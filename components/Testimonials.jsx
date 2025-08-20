@@ -19,13 +19,7 @@ const testimonials = [
       "We’ve been working with Pertinent for a year now, and I’m really happy with the quality of their work and timely project submissions. The best part is they flag RFIs in the drawings, which helps us evaluate pricing before the bid deadline and saves us from the last-day rush.",
     rating: 4,
   },
-  {
-    name: "Vikram Patel",
-    role: "Industrial Project Manager",
-    feedback:
-      "They built our industrial warehouse with amazing precision. Very organized, efficient, and on time.",
-    rating: 5,
-  },
+ 
 ];
 
 const Testimonials = () => {

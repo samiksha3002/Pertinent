@@ -13,9 +13,10 @@ const OurJourney = () => {
           whileInView={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
+          className="flex items-center justify-center h-full" // ✅ vertically + horizontally center
         >
-          <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
-            OUR <br /> <span className="text-red-600">JOURNEY</span>
+          <h2 className="text-4xl md:text-5xl font-bold leading-tight tracking-tight text-center">
+            Our <span className="text-red-600">Journey</span>
           </h2>
         </motion.div>
 
@@ -32,12 +33,13 @@ const OurJourney = () => {
             responsiveness, and real construction needs, Pertinent has evolved
             into a trusted back-end partner for general contractors,
             subcontractors, suppliers and developers.
-          </p>{" "}
-          <br />
-          Over the years, we’ve supported our clients across multiple scopes, on
-          thousands of projects—from single-storey builds to complex multi-use
-          developments, spanning commercial, residential, retail, and public
-          infrastructure.
+          </p>
+          <p>
+            Over the years, we’ve supported our clients across multiple scopes,
+            on thousands of projects—from single-storey builds to complex
+            multi-use developments, spanning commercial, residential, retail,
+            and public infrastructure.
+          </p>
           <p>
             As a remote team based in India, we bring together technical
             expertise, construction understanding, and process efficiency to

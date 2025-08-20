@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import Link from "next/link"; 
 
 interface ServiceDetailsProps {
   serviceTitle: string;
@@ -107,6 +108,21 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({
             </motion.div>
           )}
         </div>
+
+        {/* ✅ Explore Projects Button */}
+       <motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6, delay: 0.4 }}
+  className="mt-12"
+>
+  <Link href="/gallery">
+    <button className="bg-red-600 text-white font-semibold px-8 py-4 rounded-2xl shadow-lg hover:bg-red-700 hover:shadow-red-300 transition transform hover:scale-105">
+      Explore Projects
+    </button>
+  </Link>
+</motion.div>
       </div>
     </section>
   );

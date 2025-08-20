@@ -3,12 +3,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import {
-  FaFacebookF,
   FaInstagram,
   FaLinkedinIn,
   FaPhoneAlt,
   FaEnvelope,
-  FaWhatsapp,
 } from "react-icons/fa";
 
 const Footer = () => {
@@ -20,7 +18,8 @@ const Footer = () => {
       transition={{ duration: 0.8 }}
       className="bg-black text-white py-12 px-6 font-sans"
     >
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 border-b border-gray-800 pb-10">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-10 border-b border-gray-800 pb-10">
+        
         {/* Brand & Description */}
         <div>
           <div className="flex items-center space-x-3 mb-4">
@@ -32,18 +31,19 @@ const Footer = () => {
           </div>
           <p className="text-sm text-gray-400 leading-relaxed">
             PERTINENT is a construction services company, providing expert
+
             project support services to General Contractors, Subcontractors, and
             Suppliers in their daily tasks and throughout the life cycle of the
-            project.<b> We are an extension of your team.</b>
+            project. <b>We are an extension of your team.</b>
           </p>
         </div>
 
         {/* Quick Links */}
-        <div>
-          <h3 className="text-white text-lg font-semibold mb-4 tracking-wide">
+        <div className="flex flex-col justify-center">
+          <h3 className="text-white text-lg font-semibold mb-4 tracking-wide text-center md:text-left">
             Quick Links
           </h3>
-          <ul className="space-y-3 text-sm text-gray-300">
+          <ul className="space-y-3 text-sm text-gray-300 text-center md:text-left">
             <li>
               <a href="/" className="hover:text-red-600 transition">
                 Home
@@ -90,16 +90,15 @@ const Footer = () => {
           {/* Social Icons with Links */}
           <div className="mt-5 flex space-x-4 text-white">
             <a
-              href="https://www.facebook.com/yourpage" // replace with your actual Facebook page URL
+              href="https://www.instagram.com"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 bg-gray-800 rounded-full hover:bg-red-600 transition"
             >
-              
               <FaInstagram size={14} />
             </a>
             <a
-              href="https://www.linkedin.com/company/pertinentconstructionservices " // replace with your actual LinkedIn company profile
+              href="https://www.instagram.com/pertinentconstructionservices/profilecard/?igsh=a2p1NmVnaWU1eHhx "
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 bg-gray-800 rounded-full hover:bg-red-600 transition"

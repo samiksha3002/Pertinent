@@ -85,7 +85,7 @@ const OurApproach = () => {
       <div className="max-w-7xl mx-auto">
         {/* Title */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-extrabold leading-tight tracking-tight">
+          <h2 className="text-3xl md:text-5xl font-bold leading-tight tracking-tight">
             Our <span className="text-red-600">Approach</span>
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto mt-3">
