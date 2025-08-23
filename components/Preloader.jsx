@@ -24,9 +24,10 @@ const Preloader = () => {
           <motion.img
             src="/PCS Logo white.png"
             alt="Loading..."
-            className="h-40 w-auto" // increased height from h-28 → h-40
-            initial={{ scale: 0.8, opacity: 0 }} // slightly smaller start
-            animate={{ scale: 1.1, opacity: 1 }} // slight overshoot for nicer effect
+            className="h-24 sm:h-32 md:h-40 w-auto object-contain" 
+            // ✅ h-24 on mobile, h-32 on tablets, h-40 on desktop
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1.1, opacity: 1 }}
             transition={{ duration: 0.8 }}
           />
         </motion.div>

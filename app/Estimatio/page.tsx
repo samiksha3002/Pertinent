@@ -33,7 +33,7 @@ export default function Quantity() {
          "Material Procurement Tracking:Keep vendors, suppliers, and field teams aligned by managing delivery schedules and long-lead items.",
          "CM Platform Management:Efficient setup and management of construction platforms like Procore, Prolog etc to track RFIs, submittals, change orders, and drawings—ensuring real-time coordination and project visibility.",
          "Closeout Documentation:Compile and organize all required closeout materials—O&M manuals, warranties, punch lists, and certifications.",
-               "Punch List Tracking:Ensure completion of all pending items before handover to minimize delays.",
+         "Punch List Tracking:Ensure completion of all pending items before handover to minimize delays.",
         ]}
         subPoints={[
           "Drawing & Revision Tracking:Ensure your field crews always work with the most up-to-date drawings and avoid costly mistakes.",

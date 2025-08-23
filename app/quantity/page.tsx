@@ -12,14 +12,13 @@ export default function Quantity() {
       {/* ✅ Header */}
       <Header />
 
-      {/* ✅ Page Banner */}
       <PageBanner
         title="Quantity Takeoff and Estimation"
         description="Explore our gallery to witness the craftsmanship and quality behind every project we’ve delivered. From residential to industrial structures, each image reflects our engineering precision and commitment to excellence."
         backgroundImage="/pertinent9.jpg" // Make sure this file exists in /public
       />
 
-      {/* ✅ Service Details */}
+     
        <ServiceDetails
         serviceTitle="Quantity Takeoff & Estimation"
         serviceDesc="Accurate material takeoffs across all trades for building construction — helping contractors create competitive bids, reduce material waste, and stay within budget from the start."
@@ -84,7 +83,7 @@ export default function Quantity() {
           "Utility Contractor:storm, sanitary, water, manholes, site piping.",
         ]}
       />
-        {/* ✅ Footer */}
+        
       <Footer />
     </div>
   );
